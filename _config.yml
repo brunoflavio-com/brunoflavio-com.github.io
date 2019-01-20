@@ -24,7 +24,7 @@ github_username:  brunoflavio_com
 
 # Build settings
 markdown: kramdown
-theme: jekyll-theme-minimal
+#theme: jekyll-theme-minimal
 plugins:
   - jekyll-feed
 
@@ -41,3 +41,6 @@ plugins:
 #   - vendor/ruby/
 
 permalink: /:categories/:year/:month/:day/:title:output_ext
+
+sass:
+  sass_dir: assets/css
