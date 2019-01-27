@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Oni2, the future of Onivim?"
+title:  "Oni 2, the future of Oni and Vim?"
 date:   2018-01-2 14:20:00 +0100
 categories: blog vim
 ---
