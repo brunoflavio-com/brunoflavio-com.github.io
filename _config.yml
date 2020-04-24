@@ -42,5 +42,7 @@ plugins:
 
 permalink: /:categories/:year/:month/:day/:title:output_ext
 
+encoding: utf-8
+
 sass:
   sass_dir: assets/css
