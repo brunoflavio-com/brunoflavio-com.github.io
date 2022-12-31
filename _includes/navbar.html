@@ -1,7 +1,12 @@
-<nav class="navbar" role="navigation" aria-label="main navigation">
+<nav class="navbar is-dark" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-        <a class="navbar-item" href="/">{{ site.title }}<small>{{ site.description }}</small></a>
-        <a role="button" class="navbar-burger" data-target="#navbarDefault" aria-expanded="false" aria-label="menu">
+        <a class="navbar-item" href="/">
+            <img src="/assets/img/avatar.png">
+        </a>
+        <a class="navbar-item" href="/">
+            <span>{{ site.title }}</span>
+        </a>
+        <a role="button" class="navbar-burger" data-target="navbarDefault" aria-expanded="false" aria-label="menu">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
@@ -9,7 +14,7 @@
     </div>
     <div class="navbar-menu" id="navbarDefault">
         <div class="navbar-start">
-                <a class="navbar-item" href="/">Home <span class="sr-only">(current)</span></a>
+                <a class="navbar-item" href="/">Home</a>
                 <a class="navbar-item" href="/blog">Blog</a>
         </div>
         <div class="navbar-end">
