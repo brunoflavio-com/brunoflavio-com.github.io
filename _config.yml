@@ -39,6 +39,8 @@ plugins:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+exclude:
+  - .idea
 
 permalink: /:categories/:year/:month/:day/:title:output_ext
 
