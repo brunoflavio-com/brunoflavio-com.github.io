@@ -3,11 +3,13 @@ layout: post
 title:  "OpenPGP with subkeys and card"
 date:   2015-08-01 00:00:00 +0100
 categories: blog security
+image: "/assets/img/card.png"
+image-alt: "id card"
 ---
 
 This document shows the steps I’ve taken to create my OpenPGP Keys and how to store the master Key in a secure medium (encrypted USB disk) and the subkeys that I’ll frequently use on a OpenPGP card.
 
-![Card](/assets/img/card.png)
+![Card]({{page.image}} "{{page.image-alt}}")
 
 This tutorial was created using gpg version 1.4.18 on Debian Jessie.
 

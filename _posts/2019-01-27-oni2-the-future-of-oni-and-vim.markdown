@@ -3,6 +3,8 @@ layout: post
 title:  "Oni 2, the future of Oni and Vim?"
 date:   2019-01-27 14:20:00 +0100
 categories: blog vim
+image: "/assets/img/post.png"
+image-alt: "globe"
 ---
 
 My editor of choice is [Vim](https://en.wikipedia.org/wiki/Vim_(text_editor)), but having worked with the .Net Framework in a Windows workspace for two and a half years now I still don't find it as comfortable or natural to use the console in Windows as I do in my Debian laptop. After switching around between many shells ([PowerShell](https://docs.microsoft.com/en-us/PowerShell/scripting/overview?view=PowerShell-6), [git-bash](https://gitforwindows.org/), [cygwin](http://www.cygwin.com/), [babun](http://babun.github.io/), etc.) I've settled with PowerShell and the bash shell contained in git, but neither feels right when I have to fire up Vim to edit a file.

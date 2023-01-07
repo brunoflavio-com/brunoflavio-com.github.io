@@ -1,20 +1,9 @@
 ---
 ---
 
-@import 'bootstrap/bootstrap';   
+@charset "utf-8";
 
-body {
-    padding-top: 50px;
-}
+// Import a Google Font
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
 
-.navbar-brand {
-line-height:12px;
-padding-top:20px;
-padding-bottom:5px;
-}
-
-.navbar-brand small {
-display:block;
-font-size:10px;
-text-align: right;
-}
+@import 'bulma/bulma';
