@@ -3,6 +3,8 @@ layout: post
 title:  "Designing Distributed Systems - The sidecar pattern"
 date:   2019-01-29 22:30:00 +0100
 categories: blog microservices docker
+image: "/assets/img/jetski.png"
+image-alt: "jetski"
 ---
 
 I work with distributed systems on a daily basis, and having come across the book “Designing Distributed Systems by Brendan Burns (O’Reilly). Copyright 2018 Brendan Burns, 978-1-491-98364-5.” I was interested in knowing if some difficulties that I've faced have been cristalized in the form of microservices design patterns, and more importantly I'm looking to learn new interesting ways to solve upcomming challenges.
@@ -12,7 +14,7 @@ The book is freely available on the [Microsoft Azure resources website](https://
 Although I'm still going through the first chapters, the book comes across as directed towards docker containers orchestrated by kubernetes. It starts by presenting a single node pattern, **the sidecar**.
 
 
-![Sidecar](/assets/img/jetski.png)
+![Sidecar]({{page.image}} "{{page.image-alt}}")
 
 
 # So, why do I need a sidecar?
