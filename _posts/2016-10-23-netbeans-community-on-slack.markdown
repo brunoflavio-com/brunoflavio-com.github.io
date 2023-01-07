@@ -3,6 +3,8 @@ layout: post
 title:  "NetBeans community on Slack"
 date:   2016-10-23 00:00:00 +0100
 categories: blog netbeans
+image: "/assets/img/post.png"
+image-alt: "globe"
 ---
 
 The NetBeans Dream Team is experimenting with slack as a way to keep in touch with the NetBeans community.
