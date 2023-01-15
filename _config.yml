@@ -42,6 +42,16 @@ plugins:
 exclude:
   - .idea
 
+collections:
+  blogs:
+    output          : true
+    permalink: /blog/:categories/:year/:month/:day/:title:output_ext
+
+feed:
+  excerpt_only: true
+  collections:
+    - blogs
+
 permalink: /:categories/:year/:month/:day/:title:output_ext
 
 sass:

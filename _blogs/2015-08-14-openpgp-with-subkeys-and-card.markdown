@@ -2,7 +2,8 @@
 layout: post
 title:  "OpenPGP with subkeys and card"
 date:   2015-08-01 00:00:00 +0100
-categories: blog security
+categories: "Software Engineering"
+tags: security
 image: "/assets/img/card.png"
 image-alt: "id card"
 ---

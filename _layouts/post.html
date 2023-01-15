@@ -2,9 +2,26 @@
 layout: default
 ---
 <section class="hero is-primary">
-    <div class="hero-body">
+    <div class="hero-body level">
+        <div class="level-left">
+            <div class="level-item">
         <p class="title">{{page.title}}</p>
         <p class="subtitle">{{page.description}}</p>
+            </div>
+        </div>
+        <div class="level-right">
+        <div class="level-item">
+            {% if post %}
+            {% assign categories = post.categories %}
+            {% else %}
+            {% assign categories = page.categories %}
+            {% endif %}
+            {% for category in categories %}
+            <span class="tag is-link"><!--<a href="/blog/categories/#{{category|slugize}}">{{category}}</a>-->{{category}}</span>
+            {% unless forloop.last %}&nbsp;{% endunless %}
+            {% endfor %}
+        </div>
+        </div>
     </div>
 </section>
 
