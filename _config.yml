@@ -46,6 +46,8 @@ collections:
   blogs:
     output          : true
     permalink: /blog/:categories/:year/:month/:day/:title:output_ext
+  redirected:
+    output          : true
 
 feed:
   excerpt_only: true
