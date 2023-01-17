@@ -45,7 +45,7 @@ exclude:
 collections:
   blogs:
     output          : true
-    permalink: /blog/:categories/:year/:month/:day/:title:output_ext
+    permalink: /blog/:slugified_categories/:year/:month/:day/:title:output_ext
   redirected:
     output          : true
 
@@ -54,7 +54,7 @@ feed:
   collections:
     - blogs
 
-permalink: /:categories/:year/:month/:day/:title:output_ext
+permalink: /:slugified_categories/:year/:month/:day/:title:output_ext
 
 sass:
   sass_dir: assets/css
