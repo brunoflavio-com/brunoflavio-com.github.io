@@ -42,7 +42,19 @@ plugins:
 exclude:
   - .idea
 
-permalink: /:categories/:year/:month/:day/:title:output_ext
+collections:
+  blogs:
+    output          : true
+    permalink: /blog/:slugified_categories/:year/:month/:day/:title:output_ext
+  redirected:
+    output          : true
+
+feed:
+  excerpt_only: true
+  collections:
+    - blogs
+
+permalink: /:slugified_categories/:year/:month/:day/:title:output_ext
 
 encoding: utf-8
 

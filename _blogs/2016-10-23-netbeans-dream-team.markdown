@@ -2,7 +2,8 @@
 layout: post
 title:  "NetBeans dream team"
 date:   2016-10-23 00:00:00 +0100
-categories: blog security
+categories: [Software Engineering]
+tags: security
 image: "/assets/img/team.png"
 image-alt: "team"
 ---
