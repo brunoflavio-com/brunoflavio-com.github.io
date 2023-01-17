@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="canonical" href="{{ page.redirect_to }}"/>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta http-equiv="refresh" content="0;url={{ page.redirect_to }}" />
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="stylesheet" href="/assets/css/main.css">
+
+  <!-- favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+</head>
+<body>
+  {% include navbar.html %}
+  <main role="main">
+    <section class="hero is-primary">
+      <div class="hero-body">
+            <p class="title">Redirecting...</p>
+            <p class="subtitle"><a href="{{ page.redirect_to }}">Click here if you are not redirected.</a></p>
+      </div>
+    </section>
+  </main>
+  {% include footer.html %}
+  <script>location='{{ page.redirect_to }}'</script>
+</body>
+</html>
