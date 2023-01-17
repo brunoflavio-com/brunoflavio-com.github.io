@@ -17,6 +17,17 @@ layout: default
             {% assign categories = page.categories %}
             {% endif %}
             {% for category in categories %}
+            <span class="tag is-warning"><!--<a href="/blog/categories/#{{category|slugize}}">{{category}}</a>-->{{category}}</span>
+            {% unless forloop.last %}&nbsp;{% endunless %}
+            {% endfor %}
+        </div>
+        <div class="level-item">
+            {% if post %}
+            {% assign categories = post.tags %}
+            {% else %}
+            {% assign categories = page.tags %}
+            {% endif %}
+            {% for category in categories %}
             <span class="tag is-link"><!--<a href="/blog/categories/#{{category|slugize}}">{{category}}</a>-->{{category}}</span>
             {% unless forloop.last %}&nbsp;{% endunless %}
             {% endfor %}

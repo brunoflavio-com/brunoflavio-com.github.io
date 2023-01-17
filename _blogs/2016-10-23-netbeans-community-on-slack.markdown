@@ -2,7 +2,8 @@
 layout: post
 title:  "NetBeans community on Slack"
 date:   2016-10-23 00:00:00 +0100
-categories: netbeans
+categories: [Software Engineering]
+tags: netbeans
 image: "/assets/img/post.png"
 image-alt: "globe"
 ---
