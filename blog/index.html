@@ -1,13 +1,33 @@
 ---
 layout: page
-title: Blog
+title: Blog posts
 ---
+
+<div class="section">
+  <h1 class="title is-3">Welcome! 👋</h1>
+  <p>This is my blog.</p>
+</div>
 
 <div class="section">
   <h1 class="title is-3">Latest Posts</h1>
   {% assign sorted-posts = site.blogs | sort: 'date' | reverse %}
+  {% assign all-categories = "" | split: '.' %}
+
   {% for post in sorted-posts %}
-    <div class="card mb-5">
+    {% for category in post.categories %}
+      {% assign all-categories = all-categories | push: category | uniq %}
+    {% endfor %}
+  {% endfor %}
+
+  <p class="p-4 pb-4">Filter by:
+    {% for category in all-categories %}
+      <span class="tag is-warning is-clickable is-light site-toggle" onclick="filterByCategory('{{category|slugify}}', this); return false;">{{category}}</span>
+      {% unless forloop.last %}&nbsp;{% endunless %}
+    {% endfor %}
+  </p>
+
+  {% for post in sorted-posts %}
+    <div class="card mb-5 {% for category in post.categories %}site-cat-{{category|slugify}} {% endfor %} site-post">
       <div class="card-content">
         <div class="media">
           <div class="media-left">
@@ -26,6 +46,52 @@ title: Blog
           <p><a class="btn btn-secondary" href="{{ post.url }}" role="button">Read &raquo;</a></p>
         </div>
       </div>
+      <footer class="card-footer">
+        {% for category in post.categories %}
+        <span class="card-footer-item tag is-warning">{{category}}</span>
+        {% endfor %}
+      </footer>
     </div>
   {% endfor %}
 </div>
+
+<script type="text/javascript">
+  function removeAllCatelgoryFilters() {
+    for (let post of document.getElementsByClassName("site-post"))
+      post.classList.remove("is-hidden");
+    for (let toggle of document.getElementsByClassName("site-toggle"))
+      toggle.classList.add("is-light");
+  }
+
+  function togglePostVisibilityByCategory(category) {
+    for (let post of document.getElementsByClassName("site-post")) {
+      if (post.classList.contains("site-cat-" + category))
+        post.classList.remove("is-hidden");
+      else
+        post.classList.add("is-hidden");
+    }
+  }
+
+  function toggleCategoryFilterButtonStatus(togglebtn) {
+    for (let toggle of document.getElementsByClassName("site-toggle")) {
+      if (toggle == togglebtn)
+        toggle.classList.remove("is-light");
+      else
+        toggle.classList.add("is-light");
+    }
+  }
+
+  function filterByCategory(category, togglebtn) {
+    //if removing the selection restore original state and leave function:
+    if (!togglebtn.classList.contains("is-light")) {
+      removeAllCatelgoryFilters();
+      return;
+    }
+
+    //change posts visibility
+    togglePostVisibilityByCategory(category);
+
+    //change toggle statuses
+    toggleCategoryFilterButtonStatus(togglebtn);
+  }
+</script>
