@@ -2,7 +2,7 @@
 layout: post
 title:  "Oni 2, the future of Oni and Vim?"
 date:   2019-01-27 14:20:00 +0100
-categories: [Software Engineering2]
+categories: [Software Engineering]
 tags: vim
 image: "/assets/img/post.png"
 image-alt: "globe"

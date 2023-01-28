@@ -2,7 +2,7 @@
 layout: post
 title:  "Designing Distributed Systems - The sidecar pattern"
 date:   2019-01-29 22:30:00 +0100
-categories: [hello]
+categories: [Software Engineering]
 tags: microservices docker
 image: "/assets/img/jetski.png"
 image-alt: "jetski"
