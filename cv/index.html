@@ -1,0 +1,14 @@
+---
+layout: page
+title: About me
+---
+
+<div class="section">
+  <h1 class="title is-3">About me! 👋</h1>
+  <p>This is my blog.</p>
+</div>
+
+<div class="section">
+  {% assign cv = site.data.cv %}
+  {{cv.basics.name}}
+</div>
