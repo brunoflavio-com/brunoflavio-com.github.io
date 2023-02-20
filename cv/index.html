@@ -8,7 +8,90 @@ title: About me
   <p>This is my blog.</p>
 </div>
 
-<div class="section">
-  {% assign cv = site.data.cv %}
-  {{cv.basics.name}}
-</div>
+---
+layout: default
+title: My CV
+---
+
+<section class="section">
+  <div class="container">
+    <div class="content">
+
+      <h1 class="title">{{ site.data.cv.basics.name }}</h1>
+      <h2 class="subtitle">{{ site.data.cv.basics.label }}</h2>
+
+      <h2 class="title is-4">Summary</h2>
+      <p>{{ site.data.cv.basics.summary | markdownify }}</p>
+
+<!--      <h2 class="title is-4">Contact Information</h2>-->
+<!--      <ul>-->
+<!--        <li>Email: <a href="mailto:{{ site.data.cv.basics.email }}">{{ site.data.cv.basics.email }}</a></li>-->
+<!--        <li>Phone: {{ site.data.cv.basics.phone }}</li>-->
+<!--        <li>Website: <a href="{{ site.data.cv.basics.website }}">{{ site.data.cv.basics.website }}</a></li>-->
+<!--        <li>Address: {{ site.data.cv.basics.location.address }}, {{ site.data.cv.basics.location.city }}, {{ site.data.cv.basics.location.region }}, {{ site.data.cv.basics.location.postalCode }}, {{ site.data.cv.basics.location.countryCode }}</li>-->
+<!--      </ul>-->
+
+      <h2 class="title is-4">Work Experience</h2>
+      {% for work in site.data.cv.work %}
+      <div class="box">
+        <article class="media">
+          <div class="media-content">
+            <h3 class="title is-5">{{ work.position }}, {{ work.name }}</h3>
+            <p class="subtitle is-6">{{ work.startDate }} - {{ work.endDate }}</p>
+            <div class="content">
+              <p>{{ work.summary | markdownify }}</p>
+              <ul>
+                {% for highlight in work.highlights %}
+                <li>{{ highlight }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </article>
+      </div>
+      {% endfor %}
+
+      <h2 class="title is-4">Education</h2>
+      {% for education in site.data.cv.education %}
+      <div class="box">
+        <article class="media">
+          <div class="media-content">
+            <h3 class="title is-5">{{ education.studyType }} in {{ education.area }}, {{ education.institution }}</h3>
+            <p class="subtitle is-6">{{ education.startDate }} - {{ education.endDate }}</p>
+            <div class="content">
+              <p>Grade: {{ education.score }}</p>
+              <ul>
+                {% for course in education.courses %}
+                <li>{{ course }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </article>
+      </div>
+      {% endfor %}
+
+      <h2 class="title is-4">Skills</h2>
+      <div class="tags">
+        {% for skill in site.data.cv.skills %}
+        <span class="tag">{{ skill.name }} - {{ skill.level }}</span>
+        {% endfor %}
+      </div>
+
+      <h2 class="title is-4">Languages</h2>
+      <div class="tags">
+        {% for language in site.data.cv.languages %}
+        <span class="tag">{{ language.language }} - {{ language.fluency }}</span>
+        {% endfor %}
+      </div>
+
+      <h2 class="title is-4">Interests</h2>
+      <div class="tags">
+        {% for interest in site.data.cv.interests %}
+        <span class="tag">{{ interest.name }}</span>
+        {% endfor %}
+      </div>
+
+    </div>
+  </div>
+</section>
