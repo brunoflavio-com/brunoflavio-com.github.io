@@ -8,11 +8,6 @@ title: About me
   <p>This is my blog.</p>
 </div>
 
----
-layout: default
-title: My CV
----
-
 <section class="section">
   <div class="container">
     <div class="content">
@@ -33,41 +28,57 @@ title: My CV
 
       <h2 class="title is-4">Work Experience</h2>
       {% for work in site.data.cv.work %}
-      <div class="box">
-        <article class="media">
-          <div class="media-content">
-            <h3 class="title is-5">{{ work.position }}, {{ work.name }}</h3>
-            <p class="subtitle is-6">{{ work.startDate }} - {{ work.endDate }}</p>
-            <div class="content">
-              <p>{{ work.summary | markdownify }}</p>
-              <ul>
-                {% for highlight in work.highlights %}
-                <li>{{ highlight }}</li>
-                {% endfor %}
-              </ul>
+      <div class="card">
+        <div class="card-content">
+          <div class="media">
+            <div class="media-left">
+              <figure class="image is-64x64">
+                {% if work.logo %}
+                <img src="{{ work.logo }}" alt="{{ work.company }} logo">
+                {% else %}
+                <img src="/assets/img/office.png" alt="{{ work.company }} logo">
+                {% endif %}
+              </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-5">{{ work.position }}</p>
+              <p class="subtitle is-6">{{ work.name }}</p>
             </div>
           </div>
-        </article>
+          <div class="content">
+            <p class="has-text-grey">{{ work.startDate | date: "%b %Y" }} - {% if work.endDate %}{{ work.endDate | date: "%b %Y" }}{% else %}Present{% endif %}</p>
+            <p>{{ work.summary | markdownify }}</p>
+          </div>
+        </div>
       </div>
       {% endfor %}
 
       <h2 class="title is-4">Education</h2>
       {% for education in site.data.cv.education %}
-      <div class="box">
-        <article class="media">
-          <div class="media-content">
-            <h3 class="title is-5">{{ education.studyType }} in {{ education.area }}, {{ education.institution }}</h3>
-            <p class="subtitle is-6">{{ education.startDate }} - {{ education.endDate }}</p>
-            <div class="content">
-              <p>Grade: {{ education.score }}</p>
-              <ul>
-                {% for course in education.courses %}
-                <li>{{ course }}</li>
-                {% endfor %}
-              </ul>
+      <div class="card">
+        <div class="card-content">
+          <div class="media">
+            <div class="media-left">
+              <figure class="image is-64x64">
+                {% if education.logo %}
+                <img src="{{ education.logo }}" alt="{{ education.institution }} logo">
+                {% else %}
+                <img src="/assets/img/school.png" alt="{{ eduction.institution }} logo">
+                {% endif %}
+              </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-5">{{ education.institution }}</p>
+              <p class="subtitle is-6">{{ education.area }}, {{ education.studyType }}</p>
             </div>
           </div>
-        </article>
+          <div class="content">
+            <p class="has-text-grey">{{ education.startDate | date: "%b %Y" }} - {% if education.endDate %}{{ education.endDate | date: "%b %Y" }}{% else %}Present{% endif %}</p>
+            {% if education.score %}
+            <p><strong>Score:</strong> {{ education.score }}</p>
+            {% endif %}
+          </div>
+        </div>
       </div>
       {% endfor %}
 
@@ -91,6 +102,71 @@ title: My CV
         <span class="tag">{{ interest.name }}</span>
         {% endfor %}
       </div>
+
+      {% if site.data.cv.awards %}
+        <h2 class="title is-4">Awards</h2>
+        {% for award in site.data.cv.awards %}
+        <div class="card">
+          <div class="card-content">
+            <p class="title is-5">{{ award.title }}</p>
+            <p class="subtitle is-6">{{ award.awarder }}, {{ award.date | date: "%Y" }}</p>
+            <div class="content">
+              <p>{{ award.summary }}</p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      {% endif %}
+
+      {% if site.data.cv.certificates %}
+      <h2 class="title is-4">Certificates</h2>
+      <div class="columns is-multiline">
+        {% for certificate in site.data.cv.certificates %}
+        <div class="column is-4">
+          <div class="card">
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content">
+                  <p class="title is-5">{{ certificate.name }}</p>
+                  <p class="subtitle is-6">{{ certificate.issuer }}</p>
+                </div>
+              </div>
+              <div class="content">
+                <p>{{ certificate.summary | newline_to_br }}</p>
+                {% if certificate.url %}
+                <a href="{{ certificate.url }}" target="_blank" rel="noopener noreferrer">Verification link</a>
+                {% endif %}
+                <p><time datetime="{{ certificate.date }}">{{ certificate.startDate | date: "%B %Y" }}</time></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+        {% if site.data.cv.projects %}
+
+        <h2 class="title is-4">Projects</h2>
+        {% for project in site.data.cv.projects %}
+        <div class="card">
+          <div class="card-content">
+            <p class="title is-5">{{ project.name }}</p>
+            <p class="subtitle is-6">{{ project.startDate }}</p>
+            <div class="content">
+              <p>{{ project.summary }}</p>
+              {% if project.highlights %}
+              <ul>
+                {% for highlight in project.highlights %}
+                <li>{{ highlight }}</li>
+                {% endfor %}
+              </ul>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        {% endif %}
 
     </div>
   </div>
