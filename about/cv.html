@@ -1,12 +1,7 @@
 ---
 layout: page
-title: About me
+title: Curriculum Vitae
 ---
-
-<div class="section">
-  <h1 class="title is-3">About me! 👋</h1>
-  <p>This is my blog.</p>
-</div>
 
 <section class="section">
   <div class="container">
@@ -18,17 +13,28 @@ title: About me
       <h2 class="title is-4">Summary</h2>
       <p>{{ site.data.cv.basics.summary | markdownify }}</p>
 
-<!--      <h2 class="title is-4">Contact Information</h2>-->
-<!--      <ul>-->
-<!--        <li>Email: <a href="mailto:{{ site.data.cv.basics.email }}">{{ site.data.cv.basics.email }}</a></li>-->
-<!--        <li>Phone: {{ site.data.cv.basics.phone }}</li>-->
-<!--        <li>Website: <a href="{{ site.data.cv.basics.website }}">{{ site.data.cv.basics.website }}</a></li>-->
-<!--        <li>Address: {{ site.data.cv.basics.location.address }}, {{ site.data.cv.basics.location.city }}, {{ site.data.cv.basics.location.region }}, {{ site.data.cv.basics.location.postalCode }}, {{ site.data.cv.basics.location.countryCode }}</li>-->
-<!--      </ul>-->
+      {% if site.data.cv.basics.email or site.data.cv.basics.phone or site.data.cv.basics.url or site.data.cv.basics.location %}
+      <h2 class="title is-4">Contact Information</h2>
+      <ul>
+        {% if site.data.cv.basics.email %}
+        <li>Email: <a href="mailto:{{ site.data.cv.basics.email }}">{{ site.data.cv.basics.email }}</a></li>
+        {% endif %}
+        {% if site.data.cv.basics.phone %}
+        <li>Phone: {{ site.data.cv.basics.phone }}</li>
+        {% endif %}
+        {% if site.data.cv.basics.url %}
+        <li>Website: <a href="{{ site.data.cv.basics.url }}">{{ site.data.cv.basics.url }}</a></li>
+        {% endif %}
+        {% if site.data.cv.basics.location %}
+        <li>Address: {{ site.data.cv.basics.location.address }}, {{ site.data.cv.basics.location.city }}, {{ site.data.cv.basics.location.region }}, {{ site.data.cv.basics.location.postalCode }}, {{ site.data.cv.basics.location.countryCode }}</li>
+        {% endif %}
+      </ul>
+      {% endif %}
+
 
       <h2 class="title is-4">Work Experience</h2>
       {% for work in site.data.cv.work %}
-      <div class="card">
+      <div class="card mb-2">
         <div class="card-content">
           <div class="media">
             <div class="media-left">
@@ -55,7 +61,7 @@ title: About me
 
       <h2 class="title is-4">Education</h2>
       {% for education in site.data.cv.education %}
-      <div class="card">
+      <div class="card mb-2">
         <div class="card-content">
           <div class="media">
             <div class="media-left">
@@ -106,7 +112,7 @@ title: About me
       {% if site.data.cv.awards %}
         <h2 class="title is-4">Awards</h2>
         {% for award in site.data.cv.awards %}
-        <div class="card">
+        <div class="card mb-2">
           <div class="card-content">
             <p class="title is-5">{{ award.title }}</p>
             <p class="subtitle is-6">{{ award.awarder }}, {{ award.date | date: "%Y" }}</p>
@@ -122,7 +128,7 @@ title: About me
       <h2 class="title is-4">Certificates</h2>
       <div class="columns is-multiline">
         {% for certificate in site.data.cv.certificates %}
-        <div class="column is-4">
+        <div class="column is-4 px-1 py-1">
           <div class="card">
             <div class="card-content">
               <div class="media">
@@ -149,7 +155,7 @@ title: About me
 
         <h2 class="title is-4">Projects</h2>
         {% for project in site.data.cv.projects %}
-        <div class="card">
+        <div class="card mb-2">
           <div class="card-content">
             <p class="title is-5">{{ project.name }}</p>
             <p class="subtitle is-6">{{ project.startDate }}</p>
