@@ -1,0 +1,179 @@
+---
+layout: page
+title: Curriculum Vitae
+---
+
+<section class="section">
+  <div class="container">
+    <div class="content">
+
+      <h1 class="title">{{ site.data.cv.basics.name }}</h1>
+      <h2 class="subtitle">{{ site.data.cv.basics.label }}</h2>
+
+      <h2 class="title is-4">Summary</h2>
+      <p>{{ site.data.cv.basics.summary | markdownify }}</p>
+
+      {% if site.data.cv.basics.email or site.data.cv.basics.phone or site.data.cv.basics.url or site.data.cv.basics.location %}
+      <h2 class="title is-4">Contact Information</h2>
+      <ul>
+        {% if site.data.cv.basics.email %}
+        <li>Email: <a href="mailto:{{ site.data.cv.basics.email }}">{{ site.data.cv.basics.email }}</a></li>
+        {% endif %}
+        {% if site.data.cv.basics.phone %}
+        <li>Phone: {{ site.data.cv.basics.phone }}</li>
+        {% endif %}
+        {% if site.data.cv.basics.url %}
+        <li>Website: <a href="{{ site.data.cv.basics.url }}">{{ site.data.cv.basics.url }}</a></li>
+        {% endif %}
+        {% if site.data.cv.basics.location %}
+        <li>Address: {{ site.data.cv.basics.location.address }}, {{ site.data.cv.basics.location.city }}, {{ site.data.cv.basics.location.region }}, {{ site.data.cv.basics.location.postalCode }}, {{ site.data.cv.basics.location.countryCode }}</li>
+        {% endif %}
+      </ul>
+      {% endif %}
+
+
+      <h2 class="title is-4">Work Experience</h2>
+      {% for work in site.data.cv.work %}
+      <div class="card mb-2">
+        <div class="card-content">
+          <div class="media">
+            <div class="media-left">
+              <figure class="image is-64x64">
+                {% if work.logo %}
+                <img src="{{ work.logo }}" alt="{{ work.company }} logo">
+                {% else %}
+                <img src="/assets/img/office.png" alt="{{ work.company }} logo">
+                {% endif %}
+              </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-5">{{ work.position }}</p>
+              <p class="subtitle is-6">{{ work.name }}</p>
+            </div>
+          </div>
+          <div class="content">
+            <p class="has-text-grey">{{ work.startDate | date: "%b %Y" }} - {% if work.endDate %}{{ work.endDate | date: "%b %Y" }}{% else %}Present{% endif %}</p>
+            <p>{{ work.summary | markdownify }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+      <h2 class="title is-4">Education</h2>
+      {% for education in site.data.cv.education %}
+      <div class="card mb-2">
+        <div class="card-content">
+          <div class="media">
+            <div class="media-left">
+              <figure class="image is-64x64">
+                {% if education.logo %}
+                <img src="{{ education.logo }}" alt="{{ education.institution }} logo">
+                {% else %}
+                <img src="/assets/img/school.png" alt="{{ eduction.institution }} logo">
+                {% endif %}
+              </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-5">{{ education.institution }}</p>
+              <p class="subtitle is-6">{{ education.area }}, {{ education.studyType }}</p>
+            </div>
+          </div>
+          <div class="content">
+            <p class="has-text-grey">{{ education.startDate | date: "%b %Y" }} - {% if education.endDate %}{{ education.endDate | date: "%b %Y" }}{% else %}Present{% endif %}</p>
+            {% if education.score %}
+            <p><strong>Score:</strong> {{ education.score }}</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+      <h2 class="title is-4">Skills</h2>
+      <div class="tags">
+        {% for skill in site.data.cv.skills %}
+        <span class="tag">{{ skill.name }} - {{ skill.level }}</span>
+        {% endfor %}
+      </div>
+
+      <h2 class="title is-4">Languages</h2>
+      <div class="tags">
+        {% for language in site.data.cv.languages %}
+        <span class="tag">{{ language.language }} - {{ language.fluency }}</span>
+        {% endfor %}
+      </div>
+
+      <h2 class="title is-4">Interests</h2>
+      <div class="tags">
+        {% for interest in site.data.cv.interests %}
+        <span class="tag">{{ interest.name }}</span>
+        {% endfor %}
+      </div>
+
+      {% if site.data.cv.awards %}
+        <h2 class="title is-4">Awards</h2>
+        {% for award in site.data.cv.awards %}
+        <div class="card mb-2">
+          <div class="card-content">
+            <p class="title is-5">{{ award.title }}</p>
+            <p class="subtitle is-6">{{ award.awarder }}, {{ award.date | date: "%Y" }}</p>
+            <div class="content">
+              <p>{{ award.summary }}</p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      {% endif %}
+
+      {% if site.data.cv.certificates %}
+      <h2 class="title is-4">Certificates</h2>
+      <div class="columns is-multiline">
+        {% for certificate in site.data.cv.certificates %}
+        <div class="column is-4 px-1 py-1">
+          <div class="card">
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content">
+                  <p class="title is-5">{{ certificate.name }}</p>
+                  <p class="subtitle is-6">{{ certificate.issuer }}</p>
+                </div>
+              </div>
+              <div class="content">
+                <p>{{ certificate.summary | newline_to_br }}</p>
+                {% if certificate.url %}
+                <a href="{{ certificate.url }}" target="_blank" rel="noopener noreferrer">Verification link</a>
+                {% endif %}
+                <p><time datetime="{{ certificate.date }}">{{ certificate.startDate | date: "%B %Y" }}</time></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+        {% if site.data.cv.projects %}
+
+        <h2 class="title is-4">Projects</h2>
+        {% for project in site.data.cv.projects %}
+        <div class="card mb-2">
+          <div class="card-content">
+            <p class="title is-5">{{ project.name }}</p>
+            <p class="subtitle is-6">{{ project.startDate }}</p>
+            <div class="content">
+              <p>{{ project.summary }}</p>
+              {% if project.highlights %}
+              <ul>
+                {% for highlight in project.highlights %}
+                <li>{{ highlight }}</li>
+                {% endfor %}
+              </ul>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+    </div>
+  </div>
+</section>

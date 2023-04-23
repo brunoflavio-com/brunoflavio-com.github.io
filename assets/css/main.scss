@@ -7,3 +7,11 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
 
 @import 'bulma/bulma';
+
+.card {
+  display:flex;
+  flex-direction: column;
+}
+.card-footer {
+  margin-top: auto;
+}
