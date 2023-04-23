@@ -45,7 +45,7 @@ exclude:
 collections:
   blogs:
     output          : true
-    permalink: /blog/:slugified_categories/:year/:month/:day/:title:output_ext
+    permalink       : /blog/:slugified_categories/:year/:month/:day/:title:output_ext
   redirected:
     output          : true
 

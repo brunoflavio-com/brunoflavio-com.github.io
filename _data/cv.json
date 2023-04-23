@@ -1,0 +1,391 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "basics": {
+    "name": "Bruno Flávio",
+    "label": "Director of Engineering at FanDuel (Blip.pt)",
+    "image": "",
+    "url": "https://brunoflavio.com",
+    "summary": "Developing people and steering multi-disciplinary teams towards great solutions that amaze our customers is my passion.\n\nMaking the best use of our skills we can collaborate and build robust, scalable and reusable systems and achieve incremental milestones while striving to keep everyone motivated and happy. I'm excited about hyper-productivity SCRUM patterns and I truly believe in the merits of continuous improvements through honest introspection and adaptation.\n\nMy background education is on software engineering (and electronics) and I'm most comfortable with the Java and Microsoft dotnet ecosystems (Java, C#, Groovy).\n\nAreas of interest:\n- People development;\n- Engineering management;\n- People collaboration;\n- Acquiring and sharing knowledge;\n- Software Design Patterns and Principles;\n- Complex projects management and evolution;\n- Commitment;\n- Actionable agile metrics;\n\nAre you looking to fill a position, or you share some of these interests? Let's talk!",
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "username": "brunoflavio",
+        "url": "https://www.linkedin.com/in/brunoflavio/"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "FanDuel (Blip.pt)",
+      "position": "Director Of Engineering",
+      "startDate": "2021-08-31",
+      "endDate": "",
+      "highlights": [],
+      "url": "",
+      "location": "Porto"
+    },
+    {
+      "name": "FanDuel (Blip.pt)",
+      "position": "Software Engineering Manager",
+      "startDate": "2020-08-31",
+      "endDate": "2021-08-31",
+      "highlights": [],
+      "url": "https://www.linkedin.com/company/fanduel/",
+      "location": "Porto"
+    },
+    {
+      "name": "Feedzai",
+      "position": "Engineering Manager",
+      "startDate": "2019-05-31",
+      "endDate": "2020-07-31",
+      "highlights": [],
+      "url": "https://www.linkedin.com/company/feedzai/",
+      "location": "Porto Area, Portugal"
+    },
+    {
+      "name": "Farfetch",
+      "position": "Engineering Lead",
+      "startDate": "2017-08-31",
+      "endDate": "2019-05-31",
+      "highlights": [],
+      "summary": "Main responsibilities:\n- Management of project execution using lean project management principles;\n- Performing the Engineering lead role with multiple teams over the time, including an offsite (remote) team;\n- Handling impediments by coordinating with the relevant peers in the Product, Architecture, Engineering and Infrastructure areas;\n- Development of software engineers and test engineers (performance reviews; feedbacks and goals).\n- Technical interview of applicants for software engineering roles;\n- Participation in multi disciplinary company wide groups in order to contribute to the development of solutions and architecture.\n\nOther activities:\n- Development and implementation of technical training programme.\n- Backoffice blog article editor/reviewer;\n- Member of the release champions focus group aimed at improving continuous delivery;\n- Participation in the Java Standards Work Group. \n- Company representation in the Porto Tech Hub event,  2018 edition.",
+      "url": "https://www.linkedin.com/company/farfetch.com/",
+      "location": "Porto Area, Portugal"
+    },
+    {
+      "name": "Farfetch",
+      "position": "Software Engineer",
+      "startDate": "2016-10-31",
+      "endDate": "2017-08-31",
+      "highlights": [],
+      "summary": "As a software Engineer I've helped Farfetch build on the existing Finance Platform performing the following tasks:\n - Design and implementation of solutions in multiple services part of a service oriented architecture (SOA) within a SCRUM team;\n - Testing and validation of features - design and implementation of unit and integration tests;\n - Deployment and continuous integration pipeline management;\n - Report templating;\n - Maintenance work on legacy applications.\n\nTechnologies:\n - REST Web API's with Swagger documentation;\n - Unity Dependency Injection;\n - Microsoft SQL Server;\n - Apache Kafka and Zookeper technologies as a high performance alternative to Message Oriented Middleware (MoM);\n - Kibana ( LogStash ) configuration;\n - Net Framework ( C# and VB.Net );\n - Mock Server;\n\n\nParticipation in the focus group \"security-champions\" aimed at increasing the awareness on best practices regarding security.",
+      "url": "https://www.linkedin.com/company/farfetch.com/",
+      "location": "Porto Area, Portugal"
+    },
+    {
+      "name": "NetBeans Dream Team",
+      "position": "Member of NetBeans Dream Team",
+      "startDate": "2016-10-31",
+      "endDate": "2018-01-31",
+      "highlights": [],
+      "summary": "Promoting NetBeans and maintaining the Groovy/Grails module.\n\nSetting up Continuous Development for the project with Jenkins 2 pipelines.",
+      "url": ""
+    },
+    {
+      "name": "VisionSpace Technologies",
+      "position": "Software Engineer",
+      "startDate": "2014-10-31",
+      "endDate": "2016-10-31",
+      "highlights": [],
+      "summary": "As a Software Engineer in VisionSpace Technologies, I've participated in the design and development of the VSTART project aiming to provide users with an intuitive and powerful web-based experience for model based testing (Grails technology, using Spring, Java and Groovy).\n\nParticipation in the EUDART project during the development and testing phases. Design the database model through the use of the Java Persistence API. \n\nBeing in the EUDART testing and integration team gave me an understanding of the European Space Agency ground software infrastructure (ART, EUD, TEMPPO/IDATG and TECO).\n\nPerformed systems administration tasks related to Virtual Private Network configuration and maintenance, Voice Over IP Telephony Systems and development tools (VMWARE ESXi host and virtual machine administration).\n\nParticipation in project prospecting activities, writing of Outline Proposals in response to ITT's.",
+      "url": "https://www.linkedin.com/company/visionspace-technologies/",
+      "location": "Matosinhos, Portugal"
+    },
+    {
+      "name": "Auto-Estradas Norte Litoral, S.A.",
+      "position": "Telematics Field Systems Technician",
+      "startDate": "2007-12-31",
+      "endDate": "2014-10-31",
+      "highlights": [],
+      "summary": "Field systems technician:\n\n    Carrying out preventive and corrective maintenance tasks;\n    Writing maintenance reports;\n    Electronic devices repair;\n    Devices or systems malfunction diagnostics.​\n\nInformatics Engineering:\n\n    Development of monitoring software (Java) to analyse and store data from the following systems located on the highway/tunnels:\n\n        Siemens programmable controllers (Simatic S7 protocol);\n        ODECO Variable message signs (proprietary protocol);\n        PAT vehicles counter and classifier (proprietary protocol);\n        Adams input/output modules (Modbus protocol via Ethernet);\n    Development of web interface to analyse information and create reports based on user defined criteria (apache, php, ajax, MySQL).\n    Updating the VOIP application of the SOS phones system (C++) to improve audio quality, store events in a database (MySQL), support the Linux Kernel 3.x and pulseaudio.\n\nAdministrative duties:\n\n    Monitoring progress of the monthly department maintenance;\n    Enhancement of work process with the implementation of Agile methodology tools (Kanban board);\n    Documenting the progress in the work management system.",
+      "url": "",
+      "location": "Vila do Conde, Portugal"
+    },
+    {
+      "name": "ENTEC – Ensino Técnico Profissional Lda.",
+      "position": "Electronics Technician",
+      "startDate": "2005-11-30",
+      "endDate": "2007-11-30",
+      "highlights": [],
+      "summary": "ENTEC (also known as ESTEL) is a processional electronics school in Porto.\n\nResponsible for materials and equipment (logistics):\n- Management of purchase and repair orders;\n- Maintenance and refurbishment of electronics educational kits used in classes;\n- Student mentorship and support during course projects;\n- Teaching staff support;\n- Representative of the school during exhibitions;\n- Participation in the Robótica 2007 contest as part of the team representing the school.",
+      "url": "",
+      "location": "Porto, Portugal"
+    },
+    {
+      "name": "Flávio & Sá - Tecnologias de Informação Lda.",
+      "position": "Manager",
+      "startDate": "2004-11-30",
+      "endDate": "2005-11-30",
+      "highlights": [],
+      "summary": "Company management;\n    Web pages development;\n    Creation and installation of web platforms (content management sites, portals, e-commerce systems);\n    Local area network setup and configuration;\n    Operating systems installation (Windows/Linux);\n    Installation and setup of POS software.",
+      "url": "",
+      "location": "Vila do Conde, Portugal"
+    },
+    {
+      "name": "X64 - Soluções Informáticas Lda.",
+      "position": "Electronics Technician",
+      "startDate": "2003-06-30",
+      "endDate": "2004-12-31",
+      "highlights": [],
+      "summary": "Repairing and refurbishing wireless terminals for the hospitality industry:\n\n- Electric or electronic fault diagnosis using components and printed circuit boards schematics;\n- Managing the fault knowledge database;\n- Writing customer intervention reports;\n- Customers technical help desk;\n- Occasional supervision of the factory production lines.",
+      "url": "",
+      "location": "Matosinhos, Portugal"
+    }
+  ],
+  "volunteer": [],
+  "education": [
+    {
+      "institution": "Instituto Superior de Engenharia do Porto",
+      "area": "Informatics Engineering",
+      "studyType": "Bologna 1st cycle degree",
+      "startDate": "2011-12-31",
+      "endDate": "2014-12-31",
+      "score": "16",
+      "courses": []
+    },
+    {
+      "institution": "ESTEL - Escola Profissional de Tecnologia Electrónica",
+      "area": "Electrical, Electronic and Communications Engineering Technology/Technician",
+      "studyType": "ISCED Level 3: Upper secondary education",
+      "startDate": "2000-12-31",
+      "endDate": "2003-12-31",
+      "score": "17",
+      "courses": []
+    }
+  ],
+  "awards": [
+    {
+      "title": "Achievement and Recognition Award",
+      "date": "2014-09-30",
+      "awarder": "aeISEP - Student Association",
+      "summary": "Highest average mark in the 2013/2014 edition. "
+    }
+  ],
+  "certificates": [
+    {
+      "name": "Pattern-Oriented Software Architectures: Programming Mobile Services for Android Handheld Systems",
+      "issuer": "Coursera",
+      "startDate": "2013-05-31",
+      "url": "https://www.coursera.org/api/legacyCertificates.v1/spark/statementOfAccomplishment/970268~2417888/pdf"
+    },
+    {
+      "name": "Programming Mobile Applications for Android Handheld Systems",
+      "issuer": "Coursera",
+      "startDate": "2014-03-31",
+      "url": "https://www.coursera.org/api/legacyCertificates.v1/spark/statementOfAccomplishment/971246~2417888/pdf"
+    },
+    {
+      "name": "Usable Security",
+      "issuer": "Coursera Verified Certificates",
+      "startDate": "2014-10-31",
+      "url": "https://www.coursera.org/signature/certificate/E9HY83EA3S"
+    },
+    {
+      "name": "Software Security",
+      "issuer": "Coursera Verified Certificates",
+      "startDate": "2014-11-30",
+      "url": "https://www.coursera.org/account/accomplishments/verify/XMKC584V7J"
+    },
+    {
+      "name": "Cryptography",
+      "issuer": "Coursera Verified Certificates",
+      "startDate": "2015-01-31",
+      "url": "https://www.coursera.org/account/accomplishments/verify/WB8K5ZNXKA"
+    },
+    {
+      "name": "Hardware Security",
+      "issuer": "Coursera Verified Certificates",
+      "startDate": "2015-03-31",
+      "url": "https://www.coursera.org/account/accomplishments/verify/48FQZ8SXFZ"
+    },
+    {
+      "name": "Cybersecurity Capstone Project",
+      "issuer": "Coursera Verified Certificates",
+      "startDate": "2015-06-30",
+      "url": "https://www.coursera.org/account/accomplishments/verify/HYJ29PKD67"
+    },
+    {
+      "name": "Cybersecurity Specialization",
+      "issuer": "Coursera Verified Certificates",
+      "startDate": "2015-06-30",
+      "url": "https://www.coursera.org/account/accomplishments/specialization/76AWJB6ZN9KH"
+    },
+    {
+      "name": "Kubernetes Essentials",
+      "issuer": "Linux Academy",
+      "startDate": "2019-10-31",
+      "url": "https://linuxacademy.com/profile/u/cert/id/249539"
+    },
+    {
+      "name": "Cloud Native Certified Kubernetes Administrator (CKA) Training",
+      "issuer": "Linux Academy",
+      "startDate": "2020-06-30",
+      "url": "https://linuxacademy.com/profile/u/cert/id/346336"
+    }
+  ],
+  "publications": [],
+  "skills": [
+    {
+      "name": "Java",
+      "level": "",
+      "keywords": []
+    },
+    {
+      "name": "Groovy",
+      "level": "",
+      "keywords": []
+    },
+    {
+      "name": "Grails",
+      "level": "",
+      "keywords": []
+    },
+    {
+      "name": "Netbeans Platform",
+      "level": "",
+      "keywords": []
+    },
+    {
+      "name": "VisionSpace",
+      "level": "",
+      "keywords": []
+    },
+    {
+      "name": "FARFETCH",
+      "level": "",
+      "keywords": []
+    },
+    {
+      "name": "Project Management",
+      "level": "",
+      "keywords": []
+    },
+    {
+      "name": "Engineering Management",
+      "level": "",
+      "keywords": []
+    },
+    {
+      "name": "MySQL",
+      "level": "",
+      "keywords": []
+    },
+    {
+      "name": "C#",
+      "level": "",
+      "keywords": []
+    },
+    {
+      "name": "Software Engineering",
+      "level": "",
+      "keywords": []
+    },
+    {
+      "name": "Scrum",
+      "level": "",
+      "keywords": []
+    },
+    {
+      "name": "Team Leadership",
+      "level": "",
+      "keywords": []
+    },
+    {
+      "name": "PHP",
+      "level": "",
+      "keywords": []
+    },
+    {
+      "name": "Docker Products",
+      "level": "",
+      "keywords": []
+    },
+    {
+      "name": "Apache Kafka",
+      "level": "",
+      "keywords": []
+    },
+    {
+      "name": "Linux",
+      "level": "",
+      "keywords": []
+    },
+    {
+      "name": "Technical Leadership",
+      "level": "",
+      "keywords": []
+    },
+    {
+      "name": "Programming",
+      "level": "",
+      "keywords": []
+    },
+    {
+      "name": "Agile Methodologies",
+      "level": "",
+      "keywords": []
+    },
+    {
+      "name": "Embedded Linux",
+      "level": "",
+      "keywords": []
+    },
+    {
+      "name": "Linux System Administration",
+      "level": "",
+      "keywords": []
+    },
+    {
+      "name": "Visual Studio",
+      "level": "",
+      "keywords": []
+    },
+    {
+      "name": "Java EE",
+      "level": "",
+      "keywords": []
+    },
+    {
+      "name": "Web Development",
+      "level": "",
+      "keywords": []
+    },
+    {
+      "name": "JavaScript",
+      "level": "",
+      "keywords": []
+    },
+    {
+      "name": "Microsoft SQL Server",
+      "level": "",
+      "keywords": []
+    },
+    {
+      "name": "HTML",
+      "level": "",
+      "keywords": []
+    },
+    {
+      "name": "Software Development",
+      "level": "",
+      "keywords": []
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "fluency": "Native Speaker"
+    }
+  ],
+  "interests": [],
+  "references": [],
+  "projects": [
+    {
+      "name": "RCTMS - Resilient Control and Telemetry Messaging System",
+      "startDate": "2015-11-30",
+      "summary": "The Resilient Control and Telemetry Messaging System is a secure side-channel that provides remote server administration capabilities to system administrators when the server is inaccessible through the Internet.\nThe project is a service in the Network Security field. This side channel allows administrators to control their servers with confidence with proven public key encryption abilities.\nUsing Satellite communications as well as other means of communication, the Resilient Control and Telemetry Messaging System dynamically chooses the best communication method to provide a reliable service and world-wide.\nThe service is provided as a network appliance and connect to exiting servers and firewall using industry standard technologies to facilitate the integration with existing systems.",
+      "url": null,
+      "endDate": "2015-11-30"
+    },
+    {
+      "name": "VSTART Testing Platform",
+      "startDate": "2014-04-30",
+      "summary": "The VSTART Testing Platform transfers technologies employed in the European Space Operations Center testing and validation activities to a broader range of business areas. VSTART brings companies the ability to manage and run tests in a distributed environment.\n\nWith an easy to use graphical language the user can structure test scripts written in multiple modern scripting languages.\n\nAutomatic node discovery and resource management ensure the user can quickly distribute a test and execute scripts on several machines.",
+      "url": "http://vstart.io"
+    }
+  ],
+  "meta": {
+    "version": "v1.0.0",
+    "canonical": "https://github.com/jsonresume/resume-schema/blob/v1.0.0/schema.json"
+  }
+}
