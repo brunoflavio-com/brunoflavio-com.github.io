@@ -1,0 +1,65 @@
+---
+layout: page
+title: Welcome!
+description: Things are a bit messy around here as I mess around with jekyll ¯\_(ツ)_/¯
+---
+
+{% assign sorted-posts = site.blogs | sort: 'date' | reverse %}
+{% assign all-categories = "" | split: '.' %}
+
+{% for post in sorted-posts %}
+    {% for category in post.categories %}
+        {% assign all-categories = all-categories | push: category | uniq %}
+    {% endfor %}
+{% endfor %}
+
+<section class="section" id="landing">
+    <div class="container">
+        <div class="columns">
+            <div class="column is-one-half is-flex">
+                <div class="card is-flex-grow-1 is-semi-transparent">
+                    <header class="card-header">
+                        <div class="card-header-title">Latest posts</div>
+                    </header>
+                    <div class="card-content">
+                        <div class="content">
+                                {% for post in sorted-posts limit:3 %}
+                                <p>
+                                    <span class="tag is-warning is-light site-toggle">{{post.categories}}</span>
+                                    <a href="{{ post.url }}">{{ post.title }}</a>
+                                    <small>{{ post.date | date_to_string }}</small>
+                                </p>
+                                {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="card is-flex-grow-1 is-semi-transparent">
+                    <div class="card-content">
+                        <div class="content">
+                            <p>
+                                Thank you for passing by, please feel free to look around!
+                            </p>
+                            <p>
+                                I'm using this site as a way to share some of the things that I like, which you can
+                                find in my <a href="/blog">blog</a>. It has a few sections you may want to follow,
+                                such as software engineering, electronics or 3d printing.
+                            </p>
+                            <p>
+                                Its also a way to share a bit <a href="/about">about me</a> and connect with people.
+                                There are no comment sections yet, but do feel free to reach out on social media if
+                                you'd like to share feedback!
+                            </p>
+                            <p>
+                                The <a href="/about">about me</a> page is also the way to go if you're looking for a CV
+                                or links to professional networks.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
