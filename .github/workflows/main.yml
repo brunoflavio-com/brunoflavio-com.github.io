@@ -10,16 +10,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: GitHub Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v4
       - name: Bundler Cache
-        uses: actions/cache@v1
+        uses: actions/cache@v4
         with:
           path: vendor/bundle
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gems-
       - name: Build & Deploy to GitHub Pages
-        uses: joshlarsen/jekyll4-deploy-gh-pages@master
+        uses: joshlarsen/jekyll4-deploy-gh-pages@v1.9
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
