@@ -8,7 +8,7 @@ image: "/assets/img/jetski.png"
 image-alt: "jetski"
 ---
 
-I work with distributed systems on a daily basis, and having come across the book “Designing Distributed Systems by Brendan Burns (O’Reilly). Copyright 2018 Brendan Burns, 978-1-491-98364-5.” I was interested in knowing if some difficulties that I've faced have been cristalized in the form of microservices design patterns, and more importantly I'm looking to learn new interesting ways to solve upcomming challenges.
+I work with distributed systems on a daily basis, and having come across the book “Designing Distributed Systems by Brendan Burns (O’Reilly). Copyright 2018 Brendan Burns, 978-1-491-98364-5.” I was interested in knowing if some difficulties that I've faced have been crystallized in the form of microservices design patterns, and more importantly I'm looking to learn new interesting ways to solve upcoming challenges.
 
 The book is freely available on the [Microsoft Azure resources website](https://azure.microsoft.com/en-us/resources/designing-distributed-systems/)
 
@@ -20,9 +20,9 @@ Although I'm still going through the first chapters, the book comes across as di
 
 # So, why do I need a sidecar?
 
-You want to add a responsibility to your container that doesn't really fit with its core purpose, you want the ability to dynamically add or remove such responsibility. The sidecar microservices pattern ressembles the [decorator pattern](https://sourcemaking.com/design_patterns/decorator): your client will always be interested in the core functionality of your container, and not necessarily about the functionality provided by the sidecar.
+You want to add a responsibility to your container that doesn't really fit with its core purpose, you want the ability to dynamically add or remove such responsibility. The sidecar microservices pattern resembles the [decorator pattern](https://sourcemaking.com/design_patterns/decorator): your client will always be interested in the core functionality of your container, and not necessarily about the functionality provided by the sidecar.
 
-The book shows a couple of examples where a sidecar can be used to improve a legacy application (a legacy app that can live in a container, definitelly not your run-of-the-mill legacy application ^̮^ ), by making the sidecar act as a https reverse proxy to a legacy application or a WebApi configuration interface to an application that without the sidecar could only read the configuration from files.
+The book shows a couple of examples where a sidecar can be used to improve a legacy application (a legacy app that can live in a container, definitely not your run-of-the-mill legacy application ^̮^ ), by making the sidecar act as a https reverse proxy to a legacy application or a WebApi configuration interface to an application that without the sidecar could only read the configuration from files.
 
 Nevertheless, the sidecar container could also be used on modern containers to provide application health telemetry. I imagine a container that plugs into the JMX interface  ([Java Management Extensions](https://en.wikipedia.org/wiki/Java_Management_Extensions)) of any Java virtual machine and provides a common REST API for any such container. Introspection on container's resource usage could also be an interesting use case to detect faulty or malicious behaviour.
 
@@ -54,7 +54,7 @@ The container is started with a simple command:
 docker run -it --rm -p 8000:80 --name aspnetcore_sample microsoft/dotnet-samples:aspnetapp
 ```
 
-And sure enough, after a while the applicaiton is available in localhost, port 8000:
+And sure enough, after a while the application is available in localhost, port 8000:
 
 ![ASP.Net core container](/assets/img/aspnetcorecontainer.png)
 
@@ -119,7 +119,7 @@ fd501b5f1877c84e4b412528d6a06fb83fc65c5c8da3d8fb6b87ab2981058912
 
 ### Inspecting the core container system calls!
 
-In order to use the **strace-api** you need to pass the intended process id, it should probably include a resource to list running processes. In this case I used the sidecar container to findout the PID our dotnet application was running on:
+In order to use the **strace-api** you need to pass the intended process id, it should probably include a resource to list running processes. In this case I used the sidecar container to find out the PID our dotnet application was running on:
 
 ```bash
 $> docker exec -it strace-api sh
@@ -142,7 +142,7 @@ Well, here it is, an application that provides a core functionality - an asp.net
 
 # Conclusion
 
-Just like the decorator design pattern, the sidecar allows us to dynamically add funcionality to a core container. This is only possible due to the extensive capabilities that docker and the other Linux kernel components provide, allowing containers to communicate via virtual private networks, share the PID space or even the filesystem.
+Just like the decorator design pattern, the sidecar allows us to dynamically add functionality to a core container. This is only possible due to the extensive capabilities that docker and the other Linux kernel components provide, allowing containers to communicate via virtual private networks, share the PID space or even the filesystem.
 
 Sidecars are a useful addition to the devops toolkit and Site Reliability Engineers will certainly see the benefit of building standard sidecar containers that then will provide uniform information (logging, introspection, resource monitoring, failure and malicious activity detection, etc...)
 
