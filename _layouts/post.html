@@ -17,7 +17,7 @@ layout: default
             {% assign categories = page.categories %}
             {% endif %}
             {% for category in categories %}
-            <span class="tag is-warning"><!--<a href="/blog/categories/#{{category|slugize}}">{{category}}</a>-->{{category}}</span>
+            <span class="tag is-warning">{{category}}</span>
             {% unless forloop.last %}&nbsp;{% endunless %}
             {% endfor %}
         </div>
@@ -28,7 +28,7 @@ layout: default
             {% assign categories = page.tags %}
             {% endif %}
             {% for category in categories %}
-            <span class="tag is-link"><!--<a href="/blog/categories/#{{category|slugize}}">{{category}}</a>-->{{category}}</span>
+            <span class="tag is-link">{{category}}</span>
             {% unless forloop.last %}&nbsp;{% endunless %}
             {% endfor %}
         </div>
