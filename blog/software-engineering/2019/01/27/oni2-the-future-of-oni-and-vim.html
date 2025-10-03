@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Oni 2, the future of Oni and Vim? - Bruno Flávio</title>
+    <meta name="author" content="" />
+    <meta name="description" content="Oni 2, the future of Oni and Vim?" />
+    <meta name="keywords" content="Oni 2, the future of Oni and Vim?, Bruno Flávio, Software Engineering" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">   
+  
+    <link rel="stylesheet" href="/assets/css/bulma/css/bulma.min.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+    <body>
+        <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            <img src="/assets/img/avatar.png">
+        </a>
+        <a class="navbar-item" href="/">
+            <span>Bruno Flávio</span>
+        </a>
+        <a role="button" class="navbar-burger" data-target="navbarDefault" aria-expanded="false" aria-label="menu">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+    <div class="navbar-menu" id="navbarDefault">
+        <div class="navbar-start">
+                <a class="navbar-item" href="/blog">Blog</a>
+                <a class="navbar-item" href="/about">About me</a>
+        </div>
+        <div class="navbar-end">
+
+        </div>
+    </div>
+</nav>
+        <main role="main">
+            <section class="hero is-primary">
+    <div class="hero-body level">
+        <div class="level-left">
+            <div class="level-item">
+        <p class="title">Oni 2, the future of Oni and Vim?</p>
+        <p class="subtitle"></p>
+            </div>
+        </div>
+        <div class="level-right">
+        <div class="level-item">
+            
+            
+            <span class="tag is-warning">Software Engineering</span>
+            
+            
+        </div>
+        <div class="level-item">
+            
+            
+            <span class="tag is-link">vim</span>
+            
+            
+        </div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <section class="section">
+        <div class="content">
+            <p>My editor of choice is <a href="https://en.wikipedia.org/wiki/Vim_(text_editor)">Vim</a>, but having worked with the .Net Framework in a Windows workspace for two and a half years now I still don’t find it as comfortable or natural to use the console in Windows as I do in my Debian laptop. After switching around between many shells (<a href="https://docs.microsoft.com/en-us/PowerShell/scripting/overview?view=PowerShell-6">PowerShell</a>, <a href="https://gitforwindows.org/">git-bash</a>, <a href="http://www.cygwin.com/">cygwin</a>, <a href="http://babun.github.io/">babun</a>, etc.) I’ve settled with PowerShell and the bash shell contained in git, but neither feels right when I have to fire up Vim to edit a file.</p>
+
+<p>One editor that I’ve been experimenting with for 3 months now is Oni, which is an electron app on top of neovim. It feels much better than using VS Code or Atom with a vim emulator. On my Debian laptop I was still using vim until today I thought that I could give Oni a try on Linux.</p>
+
+<p>Heading to the GitHub page I saw an interesting disclaimer:</p>
+<blockquote>
+  <p>NOTE: We’re now shifting our focus to building Oni 2</p>
+</blockquote>
+
+<p>Wait, what? A new version?! Looking at the README.md the project goals look good, a VS Code or Atom like application that has a modal editor (neovim) at it’s core. Never mind that it also says it’s <code class="language-plaintext highlighter-rouge">Pre-alpha - not yet usable!</code>, let’s take a look at it :)</p>
+
+<h2 id="fetching-the-project">Fetching the project</h2>
+
+<p>First thing to notice is that there are no releases or binaries listed on the github page. However, the installation seems simple enough:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    git clone https://github.com/onivim/oni2
+    esy <span class="nb">install
+    </span>esy build
+    esy x Oni2
+</code></pre></div></div>
+
+<p>What is <a href="https://esy.sh/">esy</a>? Had no idea, their webpage states that it’s a package manager, more specifically a project that provides an <code class="language-plaintext highlighter-rouge">Easy package management for native Reason, OCaml and more</code>. Fair enough, the installation is done with the Node Package Manager, and that is something that I can understand :)</p>
+
+<p>You also need <a href="https://git-scm.com/">git</a> installed, but that will be soon come pre-installed on every computer operating system, smart phone, tablet and toaster, right?</p>
+
+<p>The final prerequisites listed for Linux are <a href="https://cmake.org/">cmake</a> and <a href="https://en.wikipedia.org/wiki/Ragel">ragel</a>, although I didn’t know ragel (<a href="http://www.colm.net/open-source/ragel/">Ragel State Machine Compiler</a>) it was available in the debian package repositories.</p>
+
+<h2 id="building-oni-2-not-as-easy-as-it-looks">Building Oni 2, not as easy as It looks</h2>
+
+<p>Installing the dependencies with <code class="language-plaintext highlighter-rouge">esy install</code> was fine. However, <code class="language-plaintext highlighter-rouge">esy build</code> wasn’t as easy as the command seems to imply.</p>
+
+<p>After a while compiling stuff, one of the dependency packages threw an error coming straight from <code class="language-plaintext highlighter-rouge">ld</code> saying that I had no bz2 and png libraries available.</p>
+
+<p>Fair enough, further inspection with <code class="language-plaintext highlighter-rouge">ld -lbz2 --verbose</code> and <code class="language-plaintext highlighter-rouge">ld -lpng --verbose</code> confirms I don’t have those around. A quick trip to <a href="https://packages.debian.org/">https://packages.debian.org/</a> tells me that packages <code class="language-plaintext highlighter-rouge">libbz2-dev</code> and <code class="language-plaintext highlighter-rouge">libpng-dev</code> will fix that.</p>
+
+<p>Another round of <code class="language-plaintext highlighter-rouge">esy build</code> to find out that cmake can’t find X11. Then <code class="language-plaintext highlighter-rouge">xrandr</code>, <code class="language-plaintext highlighter-rouge">gl.h</code>, <code class="language-plaintext highlighter-rouge">glu.h</code>… This was quickly degenerating to the <code class="language-plaintext highlighter-rouge">./configure; make; make install</code> of old.</p>
+
+<p>In the end here’s the full list of dependencies that were installed on Debian stretch:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>cmake ragel libbz2-dev libpng-dev libx11-dev libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev
+</code></pre></div></div>
+
+<p>I finally saw <code class="language-plaintext highlighter-rouge">esy build</code> completing successfully.</p>
+
+<h2 id="giving-oni-2-a-go">Giving Oni 2 a go</h2>
+
+<p>After building, running Oni 2 was as simple as executing <code class="language-plaintext highlighter-rouge">esy x Oni2</code>.</p>
+
+<p>The load time was phenomenal, right into a mostly empty editor with the famous <code class="language-plaintext highlighter-rouge">Hello World</code> content on it.
+Nothing was editable or usable at all, and actually resizing the window results in a division by zero exception.</p>
+
+<p>Here’s the screenshot of the application:</p>
+
+<p><img src="/assets/img/oni2.png" alt="Oni2" /></p>
+
+<h2 id="wrapping-up">Wrapping up</h2>
+
+<p>Well, they weren’t joking when they said <code class="language-plaintext highlighter-rouge">Pre-alpha - not yet usable!</code></p>
+<pre>¯\_(ツ)_/¯</pre>
+
+<p>At the moment, the two processes (~esy~ and ~Oni2~) use 20MB of RAM, not much until you consider that there is no functionality yet. VS Code, on the other hand, uses around 450MB or RAM to handle one tab, but it is doing a lot more (useful) stuff. At the moment there isn’t much to compare, I can’t even really understand if neovim is running within Oni 2 yet. So I guess we’ll have to wait until the application starts providing the basics.</p>
+
+<p>Ended up writing this post in VS Code with vim emulation. Go figure!</p>
+
+<p><img src="https://imgs.xkcd.com/comics/real_programmers.png" alt="XKCD" /></p>
+
+<p><a href="https://xkcd.com/378/">XKCD - Real Programmers</a></p>
+
+        </div>
+    </section>
+</div>
+
+        </main>
+        <footer class="footer">
+    <div class="content has-text-centered">
+        <p>
+            <strong><a href="https://brunoflavio.com">brunoflavio.com</a></strong> by Bruno Flávio.
+        </p>
+        <p>
+            This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
+            Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.
+        </p>
+        <picture><a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
+            <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a></picture>
+    </div>
+</footer>
+
+<!-- JS -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-66020503-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-66020503-1');
+</script>
+
+<script src="/assets/js/main.js"></script>
+    </body>
+</html>

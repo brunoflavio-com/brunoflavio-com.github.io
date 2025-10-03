@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>OpenPGP with subkeys and card - Bruno Flávio</title>
+    <meta name="author" content="" />
+    <meta name="description" content="OpenPGP with subkeys and card" />
+    <meta name="keywords" content="OpenPGP with subkeys and card, Bruno Flávio, Software Engineering" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">   
+  
+    <link rel="stylesheet" href="/assets/css/bulma/css/bulma.min.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+    <body>
+        <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            <img src="/assets/img/avatar.png">
+        </a>
+        <a class="navbar-item" href="/">
+            <span>Bruno Flávio</span>
+        </a>
+        <a role="button" class="navbar-burger" data-target="navbarDefault" aria-expanded="false" aria-label="menu">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+    <div class="navbar-menu" id="navbarDefault">
+        <div class="navbar-start">
+                <a class="navbar-item" href="/blog">Blog</a>
+                <a class="navbar-item" href="/about">About me</a>
+        </div>
+        <div class="navbar-end">
+
+        </div>
+    </div>
+</nav>
+        <main role="main">
+            <section class="hero is-primary">
+    <div class="hero-body level">
+        <div class="level-left">
+            <div class="level-item">
+        <p class="title">OpenPGP with subkeys and card</p>
+        <p class="subtitle"></p>
+            </div>
+        </div>
+        <div class="level-right">
+        <div class="level-item">
+            
+            
+            <span class="tag is-warning">Software Engineering</span>
+            
+            
+        </div>
+        <div class="level-item">
+            
+            
+            <span class="tag is-link">security</span>
+            
+            
+        </div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <section class="section">
+        <div class="content">
+            <p>This document shows the steps I’ve taken to create my OpenPGP Keys and how to store the master Key in a secure medium (encrypted USB disk) and the subkeys that I’ll frequently use on a OpenPGP card.</p>
+
+<p><img src="/assets/img/card.png" alt="Card" title="id card" /></p>
+
+<p>This tutorial was created using gpg version 1.4.18 on Debian Jessie.</p>
+
+<h2 id="setup-openpgp-to-prefer-sha2">Setup OpenPGP to prefer SHA2:</h2>
+
+<p><a href="https://keyring.debian.org/creating-key.html">Debian recommends</a> the use of 4096bit RSA keys using SHA2 hash functions.</p>
+
+<p>I’ve changed the GnuPG configuration file, <code class="language-plaintext highlighter-rouge">~/.gnupg/gpg.conf</code>, in accordance:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>utf8-strings
+keyserver hkp://keys.gnupg.net
+fixed-list-mode
+keyid-format 0xlong
+
+cert-digest-algo SHA256
+personal-digest-preferences SHA512 SHA384 SHA256 SHA224
+default-preference-list SHA512 SHA384 SHA256 SHA224 AES256 AES192 AES CAST5 BZIP2 ZLIB ZIP Uncompressed
+
+use-agent
+</code></pre></div></div>
+
+<h2 id="openpgp-keys-generation">OpenPGP Keys generation</h2>
+
+<p>Start by creating the master key with the <code class="language-plaintext highlighter-rouge">gpg --gen-key</code> command. In this example the master key won’t have an expiration date set, and subkeys will be valid for five years. Additionally your master key should have a strong password, this tutorial omitted one for the sake of simplicity.</p>
+
+<h3 id="master-key">Master key:</h3>
+
+<p>Here’s the process of creating a key:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:~$ gpg --gen-key
+gpg (GnuPG) 1.4.18; Copyright (C) 2014 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Please select what kind of key you want:
+   (1) RSA and RSA (default)
+   (2) DSA and Elgamal
+   (3) DSA (sign only)
+   (4) RSA (sign only)
+Your selection? 4
+RSA keys may be between 1024 and 4096 bits long.
+What keysize do you want? (2048) 4096
+Requested keysize is 4096 bits
+Please specify how long the key should be valid.
+         0 = key does not expire
+      &lt;n&gt;  = key expires in n days
+      &lt;n&gt;w = key expires in n weeks
+      &lt;n&gt;m = key expires in n months
+      &lt;n&gt;y = key expires in n years
+Key is valid for? (0) 
+Key does not expire at all
+Is this correct? (y/N) y
+
+You need a user ID to identify your key; the software constructs the user ID
+from the Real Name, Comment and Email Address in this form:
+    "Heinrich Heine (Der Dichter) &lt;heinrichh@duesseldorf.de&gt;"
+
+Real name: Jane Doe
+Email address: jane.doe@brunoflavio.com
+Comment: 
+You selected this USER-ID:
+    "Jane Doe &lt;jane.doe@brunoflavio.com&gt;"
+
+Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? o
+You need a Passphrase to protect your secret key.
+
+You don't want a passphrase - this is probably a *bad* idea!
+I will do it anyway.  You can change your passphrase at any time,
+using this program with the option "--edit-key".
+
+We need to generate a lot of random bytes. It is a good idea to perform
+some other action (type on the keyboard, move the mouse, utilize the
+disks) during the prime generation; this gives the random number
+generator a better chance to gain enough entropy.
+...+++++
+...+++++
+gpg: key 0x408861B75EEA201F marked as ultimately trusted
+public and secret key created and signed.
+
+gpg: checking the trustdb
+gpg: public key of ultimately trusted key 0x273DBB68C1EC3DB1 not found
+gpg: 3 marginal(s) needed, 1 complete(s) needed, PGP trust model
+gpg: depth: 0  valid:   3  signed:   0  trust: 0-, 0q, 0n, 0m, 0f, 3u
+pub   4096R/0x408861B75EEA201F 2014-09-20
+      Key fingerprint = 02AE 3718 68C9 8B5A C45A  9AEE 4088 61B7 5EEA 201F
+uid                 [ultimate] Jane Doe &lt;jane.doe@brunoflavio.com&gt;
+
+Note that this key cannot be used for encryption.  You may want to use
+the command "--edit-key" to generate a subkey for this purpose.
+</code></pre></div></div>
+
+<h3 id="encryption-and-signature-subkeys">Encryption and signature subkeys</h3>
+
+<p>The master key you’ve just created should be used solely to sign other keys. For everyday use we’ll create subkeys for encryption and signing.</p>
+
+<p>We proceed to the creation of the encryption subkey:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:~$ gpg --edit-key 0x408861B75EEA201F
+gpg (GnuPG) 1.4.18; Copyright (C) 2014 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Secret key is available.
+
+pub  4096R/0x408861B75EEA201F  created: 2014-09-20  expires: never       usage: SC  
+                               trust: ultimate      validity: ultimate
+[ultimate] (1). Jane Doe &lt;jane.doe@brunoflavio.com&gt;
+
+gpg&gt; addkey
+You need a passphrase to unlock the secret key for 
+user: "Jane Doe &lt;jane.doe@brunoflavio.com&gt;"
+4096-bit RSA key, ID 0xAD6DB00434A52FD5, created 2014-09-20
+
+Please select what kind of key you want:
+   (3) DSA (sign only)
+   (4) RSA (sign only)
+   (5) Elgamal (encrypt only)
+   (6) RSA (encrypt only)
+Your selection? 6
+RSA keys may be between 1024 and 4096 bits long.
+What keysize do you want? (2048) 4096
+Requested keysize is 4096 bits
+Please specify how long the key should be valid.
+         0 = key does not expire
+      &lt;n&gt;  = key expires in n days
+      &lt;n&gt;w = key expires in n weeks
+      &lt;n&gt;m = key expires in n months
+      &lt;n&gt;y = key expires in n years
+Key is valid for? (0) 5y
+Key expires at Thu 19 Sep 2019 12:49:19 WEST
+Is this correct? (y/N) y
+Really create? (y/N) y
+We need to generate a lot of random bytes. It is a good idea to perform
+some other action (type on the keyboard, move the mouse, utilize the
+disks) during the prime generation; this gives the random number
+generator a better chance to gain enough entropy.
+...+++++
+........................+++++
+
+pub  4096R/0x408861B75EEA201F  created: 2014-09-20  expires: never       usage: SC  
+                               trust: ultimate      validity: ultimate
+sub  4096R/0xAD6DB00434A52FD5  created: 2014-09-20  expires: 2019-09-19  usage: E   
+[ultimate] (1). Jane Doe &lt;jane.doe@brunoflavio.com&gt;
+
+gpg&gt; addkey
+You need a passphrase to unlock the secret key for 
+user: "Jane Doe &lt;jane.doe@brunoflavio.com&gt;"
+4096-bit RSA key, ID 0xAD6DB00434A52FD5, created 2014-09-20
+
+Please select what kind of key you want:
+   (3) DSA (sign only)
+   (4) RSA (sign only)
+   (5) Elgamal (encrypt only)
+   (6) RSA (encrypt only)
+Your selection? 4
+RSA keys may be between 1024 and 4096 bits long.
+What keysize do you want? (2048) 4096
+Requested keysize is 4096 bits
+Please specify how long the key should be valid.
+         0 = key does not expire
+      &lt;n&gt;  = key expires in n days
+      &lt;n&gt;w = key expires in n weeks
+      &lt;n&gt;m = key expires in n months
+      &lt;n&gt;y = key expires in n years
+Key is valid for? (0) 5y
+Key expires at Thu 19 Sep 2019 12:49:46 WEST
+Is this correct? (y/N) y
+Really create? (y/N) y
+We need to generate a lot of random bytes. It is a good idea to perform
+some other action (type on the keyboard, move the mouse, utilize the
+disks) during the prime generation; this gives the random number
+generator a better chance to gain enough entropy.
+...+++++
+......+++++
+
+pub  4096R/0x408861B75EEA201F  created: 2014-09-20  expires: never       usage: SC  
+                               trust: ultimate      validity: ultimate
+sub  4096R/0xAD6DB00434A52FD5  created: 2014-09-20  expires: 2019-09-19  usage: E   
+sub  4096R/0x010005374BB8FE68  created: 2014-09-20  expires: 2019-09-19  usage: S   
+[ultimate] (1). Jane Doe &lt;jane.doe@brunoflavio.com&gt;
+
+gpg&gt; save
+</code></pre></div></div>
+
+<h3 id="authentication-subkey">Authentication subkey:</h3>
+
+<p>To create an authentication subkey we have to create it using gpg expert mode.</p>
+
+<p>I created a 4096 authentication key. If you plan to use it with the OpenPGP card keep in mind that you will need gpg2.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:~$ gpg --expert --edit-key 0x408861B75EEA201F 
+gpg (GnuPG) 1.4.18; Copyright (C) 2014 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Secret key is available.
+
+pub  4096R/0x408861B75EEA201F  created: 2014-09-20  expires: never       usage: SC  
+                               trust: ultimate      validity: ultimate
+sub  4096R/0xAD6DB00434A52FD5  created: 2014-09-20  expires: 2019-09-19  usage: E   
+sub  4096R/0x010005374BB8FE68  created: 2014-09-20  expires: 2019-09-19  usage: S   
+[ultimate] (1). Jane Doe &lt;jane.doe@brunoflavio.com&gt;
+
+gpg&gt; addkey
+You need a passphrase to unlock the secret key for 
+user: "Jane Doe &lt;jane.doe@brunoflavio.com&gt;"
+4096-bit RSA key, ID 0xAD6DB00434A52FD5, created 2014-09-20
+
+Please select what kind of key you want:
+   (3) DSA (sign only)
+   (4) RSA (sign only)
+   (5) Elgamal (encrypt only)
+   (6) RSA (encrypt only)
+   (7) DSA (set your own capabilities)
+   (8) RSA (set your own capabilities)
+Your selection? 8
+
+Possible actions for a RSA key: Sign Encrypt Authenticate 
+Current allowed actions: Sign Encrypt 
+
+   (S) Toggle the sign capability
+   (E) Toggle the encrypt capability
+   (A) Toggle the authenticate capability
+   (Q) Finished
+
+Your selection? s
+
+Possible actions for a RSA key: Sign Encrypt Authenticate 
+Current allowed actions: Encrypt 
+
+   (S) Toggle the sign capability
+   (E) Toggle the encrypt capability
+   (A) Toggle the authenticate capability
+   (Q) Finished
+
+Your selection? e
+
+Possible actions for a RSA key: Sign Encrypt Authenticate 
+Current allowed actions: 
+
+   (S) Toggle the sign capability
+   (E) Toggle the encrypt capability
+   (A) Toggle the authenticate capability
+   (Q) Finished
+
+Your selection? a
+
+Possible actions for a RSA key: Sign Encrypt Authenticate 
+Current allowed actions: Authenticate 
+
+   (S) Toggle the sign capability
+   (E) Toggle the encrypt capability
+   (A) Toggle the authenticate capability
+   (Q) Finished
+
+Your selection? q
+RSA keys may be between 1024 and 4096 bits long.
+What keysize do you want? (2048) 4096
+Requested keysize is 4096 bits
+Please specify how long the key should be valid.
+         0 = key does not expire
+      &lt;n&gt;  = key expires in n days
+      &lt;n&gt;w = key expires in n weeks
+      &lt;n&gt;m = key expires in n months
+      &lt;n&gt;y = key expires in n years
+Key is valid for? (0) 5y
+Key expires at Thu 19 Sep 2019 12:50:10 WEST
+Is this correct? (y/N) y
+Really create? (y/N) y
+We need to generate a lot of random bytes. It is a good idea to perform
+some other action (type on the keyboard, move the mouse, utilize the
+disks) during the prime generation; this gives the random number
+generator a better chance to gain enough entropy.
+......................+++++
++++++
+
+pub  4096R/0x408861B75EEA201F  created: 2014-09-20  expires: never       usage: SC  
+                               trust: ultimate      validity: ultimate
+sub  4096R/0xAD6DB00434A52FD5  created: 2014-09-20  expires: 2019-09-19  usage: E   
+sub  4096R/0x010005374BB8FE68  created: 2014-09-20  expires: 2019-09-19  usage: S   
+sub  4096R/0xBD360B86E03F3D7A  created: 2014-09-20  expires: 2019-09-19  usage: A   
+[ultimate] (1). Jane Doe &lt;jane.doe@brunoflavio.com&gt;
+
+gpg&gt; save
+</code></pre></div></div>
+
+<h2 id="storing-the-key-in-a-secure-usb-disk-together-with-the-revocation-certificate">Storing the key in a secure USB disk together with the revocation certificate:</h2>
+
+<p>The next step is the creation of a secure place to keep your master key. I am using a SDCard for this with an encrypted directory. You’ll need this disk whenever you want to sign other keys or change your master key.</p>
+
+<h3 id="creating-the-encrypted-storage">Creating the encrypted storage:</h3>
+
+<p>In order to create the USB encrypted disk I followed the Ubuntu’s <a href="https://help.ubuntu.com/community/GPGKeyOnUSBDrive">Storing GPG Keys on an Encrypted USB Flash Drive</a> guide. Follow their instructions there and thoroughly test the mount/unmount procedure.</p>
+
+<h3 id="backup-your-keyring-and-create-a-revocation-certificate">Backup your keyring and create a revocation certificate:</h3>
+
+<p>At this point you may backup your keyring and GnuPG and settings to the encrypted USB disk.</p>
+
+<p>We’ll assume you have plugged in and mounted your USB disk and that your encrypted folder is on the following location: /media/janedoe/uuid/encrypted (don’t forget to use mount.sh before proceeding).</p>
+
+<p>Copy the GnuPG settings directory to your encrypted disk:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:~$ cp -R ~/.gnupg /media/janedoe/uuid/encrypted/ -R
+:~$ chmod 700 /media/janedoe/uuid/encrypted/.gnupg
+</code></pre></div></div>
+
+<p>Make sure that your public and secret keys are in the expected location:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:~$ gpg --home=/media/janedoe/uuid/encrypted/.gnupg -k /media/janedoe/uuid/encrypted/.gnupg/pubring.gpg
+-----------------------------------------------------------------------------------
+pub   4096R/0x408861B75EEA201F 2014-09-20
+uid                 [ultimate] Jane Doe &lt;jane.doe@brunoflavio.com&gt;
+sub   4096R/0xAD6DB00434A52FD5 2014-09-20 [expires: 2019-09-19]
+sub   4096R/0x010005374BB8FE68 2014-09-20 [expires: 2019-09-19]
+sub   4096R/0xBD360B86E03F3D7A 2014-09-20 [expires: 2019-09-19]
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:~$ gpg --home=/media/janedoe/uuid/encrypted/.gnupg -K /media/janedoe/uuid/encrypted/.gnupg/secring.gpg
+-----------------------------------------------------------------------------------
+sec   4096R/0x408861B75EEA201F 2014-09-20
+uid                            Jane Doe &lt;jane.doe@brunoflavio.com&gt;
+ssb   4096R/0xAD6DB00434A52FD5 2014-09-20
+ssb   4096R/0x010005374BB8FE68 2014-09-20
+ssb   4096R/0xBD360B86E03F3D7A 2014-09-20
+</code></pre></div></div>
+
+<p>You may now create a revocation certificate and store it within your encrypted USB disk:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:~$ gpg --home=/media/janedoe/uuid/encrypted/.gnupg --output /media/janedoe/uuid/encrypted/.gnupg/0x408861B75EEA201F.gpg-revocation-certificate --armour --gen-revoke 0x408861B75EEA201F
+
+sec  4096R/0x408861B75EEA201F 2014-09-20 Jane Doe &lt;jane.doe@brunoflavio.com&gt;
+
+Create a revocation certificate for this key? (y/N) y
+Please select the reason for the revocation:
+  0 = No reason specified
+  1 = Key has been compromised
+  2 = Key is superseded
+  3 = Key is no longer used
+  Q = Cancel
+(Probably you want to select 1 here)
+Your decision? 1
+Enter an optional description; end it with an empty line:
+&gt; This revocation certificate was generated at the time of the key creation.
+&gt; 
+Reason for revocation: Key has been compromised
+This revocation certificate was generated at the time of the key creation.
+Is this okay? (y/N) y
+NOTE: This key is not protected!
+Revocation certificate created.
+
+Please move it to a medium which you can hide away; if Mallory gets
+access to this certificate he can use it to make your key unusable.
+It is smart to print this certificate and store it away, just in case
+your media become unreadable.  But have some caution:  The print system of
+your machine might store the data and make it available to others!
+</code></pre></div></div>
+
+<h2 id="remove-your-master-key-from-your-users-keyring">Remove your master key from your user’s keyring:</h2>
+
+<p>Now that you have a backup of your key you should be ready to remove the master key from your keyring. The original will stay in the USB encrypted disk.</p>
+
+<p>There are 4 steps in this process:</p>
+<ul>
+  <li>Export your secret subkeys to a file;</li>
+  <li>Remove all your secret keys;</li>
+  <li>Import the secret subkeys back, leaving the secret master key behind;</li>
+  <li>Remove the subkeys file you’ve exported.</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:~$ gpg --export-secret-subkeys 0x408861B75EEA201F &gt; ~/.gnupg/subkeys
+
+:~$ gpg --delete-secret-keys 0x408861B75EEA201F 
+gpg (GnuPG) 1.4.18; Copyright (C) 2014 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+
+sec  4096R/0x408861B75EEA201F 2014-09-20 Jane Doe &lt;jane.doe@brunoflavio.com&gt;
+
+Delete this key from the keyring? (y/N) y
+This is a secret key! - really delete? (y/N) y
+
+:~$ gpg --import ~/.gnupg/subkeys 
+gpg: key 0x408861B75EEA201F: secret key imported
+gpg: key 0x408861B75EEA201F: "Jane Doe &lt;jane.doe@brunoflavio.com&gt;" not changed
+gpg: Total number processed: 1
+gpg:              unchanged: 1
+gpg:       secret keys read: 1
+gpg:   secret keys imported: 1
+
+:~$ shred -u ~/.gnupg/subkeys 
+</code></pre></div></div>
+
+<p>You may now confirm that your keyring is missing the secret master key:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:~$ gpg -K /home/jane/.gnupg/secring.gpg
+---------------------------------
+sec#  4096R/0x408861B75EEA201F 2014-09-20
+uid                            Jane Doe &lt;jane.doe@brunoflavio.com&gt;
+ssb   4096R/0xAD6DB00434A52FD5 2014-09-20
+ssb   4096R/0x010005374BB8FE68 2014-09-20
+ssb   4096R/0xBD360B86E03F3D7A 2014-09-20
+</code></pre></div></div>
+
+<p>The ‘#’ symbol confirms that the secret key is absent.</p>
+
+<h2 id="moving-your-secret-subkeys-into-the-openpgp-card">Moving your secret subkeys into the OpenPGP card:</h2>
+
+<p>If you have a OpenPGP card you probably want to move your secret subkeys into it, removing all the secret keys from your computer and further improving security.
+Initializing the OpenPGP card:</p>
+
+<p>Use <code class="language-plaintext highlighter-rouge">gpg --card-edit</code> to initialize your card:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:~$ gpg --card-edit 
+
+Application ID ...: 00000000000000000000000000000000
+Version ..........: 2.0
+Manufacturer .....: ZeitControl
+Serial number ....: 00000000
+Name of cardholder: [not set]
+Language prefs ...: de
+Sex ..............: unspecified
+URL of public key : [not set]
+Login data .......: [not set]
+Private DO 1 .....: [not set]
+Private DO 2 .....: [not set]
+Signature PIN ....: forced
+Key attributes ...: 2048R 2048R 2048R
+Max. PIN lengths .: 32 32 32
+PIN retry counter : 3 0 3
+Signature counter : 0
+Signature key ....: [none]
+Encryption key....: [none]
+Authentication key: [none]
+General key info..: [none]
+
+gpg/card&gt; admin
+Admin commands are allowed
+
+gpg/card&gt; help
+quit       quit this menu
+admin      show admin commands
+help       show this help
+list       list all available data
+name       change card holder's name
+url        change URL to retrieve key
+fetch      fetch the key specified in the card URL
+login      change the login name
+lang       change the language preferences
+sex        change card holder's sex
+cafpr      change a CA fingerprint
+forcesig   toggle the signature force PIN flag
+generate   generate new keys
+passwd     menu to change or unblock the PIN
+verify     verify the PIN and list all data
+unblock    unblock the PIN using a Reset Code
+
+gpg/card&gt; 
+</code></pre></div></div>
+
+<p>To use name, sex and the other commands to personalize your card you need to enter the admin mode.
+You may also change your card admin PIN with the passwd command:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gpg/card&gt; admin
+Admin commands are allowed
+
+gpg/card&gt; name
+Cardholder's surname: Doe
+Cardholder's given name: Jane
+
+gpg/card&gt; sex
+Sex ((M)ale, (F)emale or space): F
+
+gpg/card&gt; quit
+</code></pre></div></div>
+
+<h3 id="move-your-secret-subkeys-to-the-card">Move your secret subkeys to the card:</h3>
+
+<p>To move your keys to the card you’ll use the keytocard command when editing your key:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:~$ gpg --edit-key 0x408861B75EEA201F
+gpg (GnuPG) 1.4.18; Copyright (C) 2014 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Secret key is available.
+
+pub  4096R/0x408861B75EEA201F  created: 2014-09-20  expires: never       usage: SC  
+                               trust: ultimate      validity: ultimate
+sub  4096R/0xAD6DB00434A52FD5  created: 2014-09-20  expires: 2019-09-19  usage: E   
+sub  4096R/0x010005374BB8FE68  created: 2014-09-20  expires: 2019-09-19  usage: S   
+sub  4096R/0xBD360B86E03F3D7A  created: 2014-09-20  expires: 2019-09-19  usage: A   
+[ultimate] (1). Jane Doe &lt;jane.doe@brunoflavio.com&gt;
+</code></pre></div></div>
+
+<p>To select your subkeys you will need to use their number, you can determine it’s usage by looking at the “usage” field:</p>
+<ul>
+  <li>key 1: Encryption key;</li>
+  <li>key 2: Signing key;</li>
+  <li>key 3: Authentication key.</li>
+</ul>
+
+<p>The toggle command switches the interface to manage secret keys.</p>
+
+<p>Subkeys have to be moved to the card one at a time. To select a subkey use the key command followed by the key number. The keys currently selected will have a ‘*’ next to it.</p>
+
+<p>Let’s start by moving the Encryption subkey to the card:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gpg&gt; toggle
+
+sec  4096R/0x408861B75EEA201F  created: 2014-09-20  expires: never     
+ssb  4096R/0xAD6DB00434A52FD5  created: 2014-09-20  expires: never     
+ssb  4096R/0x010005374BB8FE68  created: 2014-09-20  expires: never     
+ssb  4096R/0xBD360B86E03F3D7A  created: 2014-09-20  expires: never     
+(1)  Jane Doe &lt;jane.doe@brunoflavio.com&gt;
+
+gpg&gt; key 1
+
+sec  4096R/0x408861B75EEA201F  created: 2014-09-20  expires: never     
+ssb* 4096R/0xAD6DB00434A52FD5  created: 2014-09-20  expires: never     
+ssb  4096R/0x010005374BB8FE68  created: 2014-09-20  expires: never     
+ssb  4096R/0xBD360B86E03F3D7A  created: 2014-09-20  expires: never     
+(1)  Jane Doe &lt;jane.doe@brunoflavio.com&gt;
+
+gpg&gt; keytocard
+Signature key ....: [none]
+Encryption key....: [none]
+Authentication key: [none]
+
+Please select where to store the key:
+   (2) Encryption key
+Your selection? 2
+
+You need a passphrase to unlock the secret key for
+user: "Jane Doe &lt;jane.doe@brunoflavio.com&gt;"
+4096-bit RSA key, ID 0xAD6DB00434A52FD5, created 2014-09-20
+
+
+sec  4096R/0x408861B75EEA201F  created: 2014-09-20  expires: never     
+ssb* 4096R/0xAD6DB00434A52FD5  created: 2014-09-20  expires: never     
+                     card-no: 0005 0000285F
+ssb  4096R/0x010005374BB8FE68  created: 2014-09-20  expires: never     
+ssb  4096R/0xBD360B86E03F3D7A  created: 2014-09-20  expires: never     
+(1)  Jane Doe &lt;jane.doe@brunoflavio.com&gt;
+</code></pre></div></div>
+
+<p>Your encryption subkey has now been moved to the card.</p>
+
+<p>The interface allows the selection of multiple subkeys simultaneously, so you’ll have to deselect the previous key before switching to the next.</p>
+
+<p>We will now transfer the second subkey, the signing secret key:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gpg&gt; key 2
+
+sec  4096R/0x408861B75EEA201F  created: 2014-09-20  expires: never     
+ssb  4096R/0xAD6DB00434A52FD5  created: 2014-09-20  expires: never     
+                     card-no: 0005 0000285F
+ssb* 4096R/0x010005374BB8FE68  created: 2014-09-20  expires: never     
+ssb  4096R/0xBD360B86E03F3D7A  created: 2014-09-20  expires: never     
+(1)  Jane Doe &lt;jane.doe@brunoflavio.com&gt;
+
+gpg&gt; keytocard
+Signature key ....: [none]
+Encryption key....: 4A59 741C 3037 79E4 5E22  6DC0 AD6D B004 34A5 2FD5
+Authentication key: [none]
+
+Please select where to store the key:
+   (1) Signature key
+   (3) Authentication key
+Your selection? 1
+
+You need a passphrase to unlock the secret key for
+user: "Jane Doe &lt;jane.doe@brunoflavio.com&gt;"
+4096-bit RSA key, ID 0x010005374BB8FE68, created 2014-09-20
+
+
+sec  4096R/0x408861B75EEA201F  created: 2014-09-20  expires: never     
+ssb  4096R/0xAD6DB00434A52FD5  created: 2014-09-20  expires: never     
+                     card-no: 0005 0000285F
+ssb* 4096R/0x010005374BB8FE68  created: 2014-09-20  expires: never     
+                     card-no: 0005 0000285F
+ssb  4096R/0xBD360B86E03F3D7A  created: 2014-09-20  expires: never     
+(1)  Jane Doe &lt;jane.doe@brunoflavio.com&gt;
+</code></pre></div></div>
+
+<p>Finally, let’s transfer the third subkey, the authentication one:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gpg&gt; key 3
+
+sec  4096R/0x408861B75EEA201F  created: 2014-09-20  expires: never     
+ssb  4096R/0xAD6DB00434A52FD5  created: 2014-09-20  expires: never     
+                     card-no: 0005 0000285F
+ssb  4096R/0x010005374BB8FE68  created: 2014-09-20  expires: never     
+                     card-no: 0005 0000285F
+ssb* 4096R/0xBD360B86E03F3D7A  created: 2014-09-20  expires: never     
+(1)  Jane Doe &lt;jane.doe@brunoflavio.com&gt;
+
+gpg&gt; keytocard
+Signature key ....: 0076 D240 0C1D 7710 4060  6BA9 0100 0537 4BB8 FE68
+Encryption key....: 4A59 741C 3037 79E4 5E22  6DC0 AD6D B004 34A5 2FD5
+Authentication key: [none]
+
+Please select where to store the key:
+   (3) Authentication key
+Your selection? 
+
+gpg&gt; keytocard
+Signature key ....: 0076 D240 0C1D 7710 4060  6BA9 0100 0537 4BB8 FE68
+Encryption key....: 4A59 741C 3037 79E4 5E22  6DC0 AD6D B004 34A5 2FD5
+Authentication key: [none]
+
+Please select where to store the key:
+   (3) Authentication key
+Your selection? 3
+
+You need a passphrase to unlock the secret key for
+user: "Jane Doe &lt;jane.doe@brunoflavio.com&gt;"
+4096-bit RSA key, ID 0xBD360B86E03F3D7A, created 2014-09-20
+
+
+sec  4096R/0x408861B75EEA201F  created: 2014-09-20  expires: never     
+ssb  4096R/0xAD6DB00434A52FD5  created: 2014-09-20  expires: never     
+                     card-no: 0005 0000285F
+ssb  4096R/0x010005374BB8FE68  created: 2014-09-20  expires: never     
+                     card-no: 0005 0000285F
+ssb* 4096R/0xBD360B86E03F3D7A  created: 2014-09-20  expires: never     
+                     card-no: 0005 0000285F
+(1)  Jane Doe &lt;jane.doe@brunoflavio.com&gt;
+</code></pre></div></div>
+
+<p>With all the keys on the card you may now save.
+If you list your secret keys you’ll now find that your secret subkeys are marked with a ‘&gt;’ indicating that they are no longer stored in your keyring:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gpg&gt; save
+:~$ gpg -K
+/home/jane/.gnupg/secring.gpg
+---------------------------------
+sec#  4096R/0x408861B75EEA201F 2014-09-20
+uid                            Jane Doe &lt;jane.doe@brunoflavio.com&gt;
+ssb&gt;  4096R/0xAD6DB00434A52FD5 2014-09-20
+ssb&gt;  4096R/0x010005374BB8FE68 2014-09-20
+ssb&gt;  4096R/0xBD360B86E03F3D7A 2014-09-20
+</code></pre></div></div>
+
+<h2 id="wrapping-up">Wrapping up</h2>
+
+<p>If all these steps were successfully completed you should now have a USB encrypted disk with your secret master key and secret subkeys.</p>
+
+<p>If you transferred your secret subkeys to a OpenPGP card you now have a computer without any keys to be lost or stolen.</p>
+
+<h3 id="test-everything">Test everything:</h3>
+
+<p>If all is well you should be able to encrypt/sign a file with the subkeys stored on the card and then decrypt with your master key USB device.</p>
+
+<h3 id="share-your-public-key">Share your public key:</h3>
+
+<p>When you’re satisfied that everything is ok and that you are able to recover the system you may consider sending your public key to a pgp key server. Please note that this action will be permanent and that your uid (user and email address) will be publicly available:</p>
+
+<p><code class="language-plaintext highlighter-rouge">gpg --keyserver subkeys.pgp.net --send-key 0x408861B75EEA201F</code></p>
+
+<h3 id="take-care-of-your-master-key">Take care of your master key:</h3>
+
+<p>Whenever you need to change your master key or sign other person keys you’ll need your usb token.</p>
+
+<p><em>The USB encrypted disk could become corrupted or lost</em>, you should account for this by:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>creating multiple encrypted USB disks (make sure you won’t forget the encrypted volume password);
+printing your revocation certificate;
+(maybe burning a CD with your key and revocation certificate, unencrypted?).
+Finally, don’t store all this in the same place, of course.
+</code></pre></div></div>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li><a href="https://keyring.debian.org/creating-key.html">http://keyring.debian.org/creating-key.html</a></li>
+  <li><a href="https://www.void.gr/kargig/blog/2013/12/02/creating-a-new-gpg-key-with-subkeys/">https://www.void.gr/kargig/blog/2013/12/02/creating-a-new-gpg-key-with-subkeys/</a></li>
+  <li><a href="https://wiki.debian.org/Smartcards/OpenPGP">https://wiki.debian.org/Smartcards/OpenPGP</a></li>
+  <li><a href="https://inuits.eu/blog/ssh-authentication-your-pgp-key">https://inuits.eu/blog/ssh-authentication-your-pgp-key</a></li>
+</ul>
+
+
+        </div>
+    </section>
+</div>
+
+        </main>
+        <footer class="footer">
+    <div class="content has-text-centered">
+        <p>
+            <strong><a href="https://brunoflavio.com">brunoflavio.com</a></strong> by Bruno Flávio.
+        </p>
+        <p>
+            This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
+            Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.
+        </p>
+        <picture><a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
+            <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a></picture>
+    </div>
+</footer>
+
+<!-- JS -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-66020503-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-66020503-1');
+</script>
+
+<script src="/assets/js/main.js"></script>
+    </body>
+</html>

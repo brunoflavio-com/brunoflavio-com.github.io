@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Blog - Bruno Flávio</title>
+    <meta name="author" content="" />
+    <meta name="description" content="Blog" />
+    <meta name="keywords" content="Blog, Bruno Flávio, " />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">   
+  
+    <link rel="stylesheet" href="/assets/css/bulma/css/bulma.min.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+    <body>
+        <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            <img src="/assets/img/avatar.png">
+        </a>
+        <a class="navbar-item" href="/">
+            <span>Bruno Flávio</span>
+        </a>
+        <a role="button" class="navbar-burger" data-target="navbarDefault" aria-expanded="false" aria-label="menu">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+    <div class="navbar-menu" id="navbarDefault">
+        <div class="navbar-start">
+                <a class="navbar-item" href="/blog">Blog</a>
+                <a class="navbar-item" href="/about">About me</a>
+        </div>
+        <div class="navbar-end">
+
+        </div>
+    </div>
+</nav>
+        <main role="main">
+            <section class="hero is-primary">
+    <div class="hero-body">
+        <p class="title">Blog</p>
+        <p class="subtitle">This is my blog! Reach out if you have feedback or spot something wrong!</p>
+    </div>
+</section>
+
+<div class="container">
+    <div class="section">
+  <h1 class="title is-3">Latest Posts</h1>
+  
+  
+
+  
+
+  <p class="p-4 pb-4">Filter by:
+    
+      <span class="tag is-warning is-clickable is-light site-toggle" onclick="filterByCategory('3d-printing', this); return false;">3d printing</span>
+      &nbsp;
+    
+      <span class="tag is-warning is-clickable is-light site-toggle" onclick="filterByCategory('software-engineering', this); return false;">Software Engineering</span>
+      
+    
+  </p>
+
+  
+    <div class="card mb-5 site-cat-3d-printing  site-post">
+      <div class="card-content">
+        <div class="media">
+          <div class="media-left">
+            <figure class="image is-48x48">
+              <img src="/assets/img/vase_legos_900x1200.jpg" alt="Gyroid vase ornamented with Lego Wildflower Bouquet">
+            </figure>
+          </div>
+          <div class="media-content">
+            <p class="title is-4">Gyroid vase 3d print</p>
+            <p class="subtitle is-6"><time datetime="2023-05-07 20:45:00 +0000">2023-05-07 20:45:00 +0000</time></p>
+          </div>
+        </div>
+
+        <div class="content">
+          <p>Spring has sprung and our Lego Wildflowers bouquet (<a href="https://www.lego.com/en-us/product/wildflower-bouquet-10313" target="_blank">link 🔗</a>) was in desperate need of a vase! So, we turned to Thingiverse and found a very nice looking one: <a href="https://www.thingiverse.com/thing:4899605" target="_blank">Sergio Menéndez’s gyroid vase</a>.</p>
+
+          <p><a class="btn btn-secondary" href="/blog/3d-printing/2023/05/07/gyroid-vase-3dprint.html" role="button">Read &raquo;</a></p>
+        </div>
+      </div>
+      <footer class="card-footer">
+        
+        <span class="card-footer-item tag is-warning">3d printing</span>
+        
+      </footer>
+    </div>
+  
+    <div class="card mb-5 site-cat-software-engineering  site-post">
+      <div class="card-content">
+        <div class="media">
+          <div class="media-left">
+            <figure class="image is-48x48">
+              <img src="/assets/img/jetski.png" alt="jetski">
+            </figure>
+          </div>
+          <div class="media-content">
+            <p class="title is-4">Designing Distributed Systems - The sidecar pattern</p>
+            <p class="subtitle is-6"><time datetime="2019-01-29 21:30:00 +0000">2019-01-29 21:30:00 +0000</time></p>
+          </div>
+        </div>
+
+        <div class="content">
+          <p>I work with distributed systems on a daily basis, and having come across the book “Designing Distributed Systems by Brendan Burns (O’Reilly). Copyright 2018 Brendan Burns, 978-1-491-98364-5.” I was interested in knowing if some difficulties that I’ve faced have been crystallized in the form of microservices design patterns, and more importantly I’m looking to learn new interesting ways to solve upcoming challenges.</p>
+
+          <p><a class="btn btn-secondary" href="/blog/software-engineering/2019/01/29/microservices-sidecar-pattern.html" role="button">Read &raquo;</a></p>
+        </div>
+      </div>
+      <footer class="card-footer">
+        
+        <span class="card-footer-item tag is-warning">Software Engineering</span>
+        
+      </footer>
+    </div>
+  
+    <div class="card mb-5 site-cat-software-engineering  site-post">
+      <div class="card-content">
+        <div class="media">
+          <div class="media-left">
+            <figure class="image is-48x48">
+              <img src="/assets/img/post.png" alt="globe">
+            </figure>
+          </div>
+          <div class="media-content">
+            <p class="title is-4">Oni 2, the future of Oni and Vim?</p>
+            <p class="subtitle is-6"><time datetime="2019-01-27 13:20:00 +0000">2019-01-27 13:20:00 +0000</time></p>
+          </div>
+        </div>
+
+        <div class="content">
+          <p>My editor of choice is <a href="https://en.wikipedia.org/wiki/Vim_(text_editor)">Vim</a>, but having worked with the .Net Framework in a Windows workspace for two and a half years now I still don’t find it as comfortable or natural to use the console in Windows as I do in my Debian laptop. After switching around between many shells (<a href="https://docs.microsoft.com/en-us/PowerShell/scripting/overview?view=PowerShell-6">PowerShell</a>, <a href="https://gitforwindows.org/">git-bash</a>, <a href="http://www.cygwin.com/">cygwin</a>, <a href="http://babun.github.io/">babun</a>, etc.) I’ve settled with PowerShell and the bash shell contained in git, but neither feels right when I have to fire up Vim to edit a file.</p>
+
+          <p><a class="btn btn-secondary" href="/blog/software-engineering/2019/01/27/oni2-the-future-of-oni-and-vim.html" role="button">Read &raquo;</a></p>
+        </div>
+      </div>
+      <footer class="card-footer">
+        
+        <span class="card-footer-item tag is-warning">Software Engineering</span>
+        
+      </footer>
+    </div>
+  
+    <div class="card mb-5 site-cat-software-engineering  site-post">
+      <div class="card-content">
+        <div class="media">
+          <div class="media-left">
+            <figure class="image is-48x48">
+              <img src="/assets/img/team.png" alt="team">
+            </figure>
+          </div>
+          <div class="media-content">
+            <p class="title is-4">NetBeans dream team</p>
+            <p class="subtitle is-6"><time datetime="2016-10-22 23:00:00 +0000">2016-10-22 23:00:00 +0000</time></p>
+          </div>
+        </div>
+
+        <div class="content">
+          <p>The NetBeans Dream Team has seven new members, and I’m excited to be one of them!</p>
+
+          <p><a class="btn btn-secondary" href="/blog/software-engineering/2016/10/22/netbeans-dream-team.html" role="button">Read &raquo;</a></p>
+        </div>
+      </div>
+      <footer class="card-footer">
+        
+        <span class="card-footer-item tag is-warning">Software Engineering</span>
+        
+      </footer>
+    </div>
+  
+    <div class="card mb-5 site-cat-software-engineering  site-post">
+      <div class="card-content">
+        <div class="media">
+          <div class="media-left">
+            <figure class="image is-48x48">
+              <img src="/assets/img/post.png" alt="globe">
+            </figure>
+          </div>
+          <div class="media-content">
+            <p class="title is-4">NetBeans community on Slack</p>
+            <p class="subtitle is-6"><time datetime="2016-10-22 23:00:00 +0000">2016-10-22 23:00:00 +0000</time></p>
+          </div>
+        </div>
+
+        <div class="content">
+          <p>The NetBeans Dream Team is experimenting with slack as a way to keep in touch with the NetBeans community.</p>
+
+          <p><a class="btn btn-secondary" href="/blog/software-engineering/2016/10/22/netbeans-community-on-slack.html" role="button">Read &raquo;</a></p>
+        </div>
+      </div>
+      <footer class="card-footer">
+        
+        <span class="card-footer-item tag is-warning">Software Engineering</span>
+        
+      </footer>
+    </div>
+  
+    <div class="card mb-5 site-cat-software-engineering  site-post">
+      <div class="card-content">
+        <div class="media">
+          <div class="media-left">
+            <figure class="image is-48x48">
+              <img src="/assets/img/card.png" alt="id card">
+            </figure>
+          </div>
+          <div class="media-content">
+            <p class="title is-4">OpenPGP with subkeys and card</p>
+            <p class="subtitle is-6"><time datetime="2015-07-31 23:00:00 +0000">2015-07-31 23:00:00 +0000</time></p>
+          </div>
+        </div>
+
+        <div class="content">
+          <p>This document shows the steps I’ve taken to create my OpenPGP Keys and how to store the master Key in a secure medium (encrypted USB disk) and the subkeys that I’ll frequently use on a OpenPGP card.</p>
+
+          <p><a class="btn btn-secondary" href="/blog/software-engineering/2015/07/31/openpgp-with-subkeys-and-card.html" role="button">Read &raquo;</a></p>
+        </div>
+      </div>
+      <footer class="card-footer">
+        
+        <span class="card-footer-item tag is-warning">Software Engineering</span>
+        
+      </footer>
+    </div>
+  
+</div>
+
+<script type="text/javascript">
+  function removeAllCatelgoryFilters() {
+    for (let post of document.getElementsByClassName("site-post"))
+      post.classList.remove("is-hidden");
+    for (let toggle of document.getElementsByClassName("site-toggle"))
+      toggle.classList.add("is-light");
+  }
+
+  function togglePostVisibilityByCategory(category) {
+    for (let post of document.getElementsByClassName("site-post")) {
+      if (post.classList.contains("site-cat-" + category))
+        post.classList.remove("is-hidden");
+      else
+        post.classList.add("is-hidden");
+    }
+  }
+
+  function toggleCategoryFilterButtonStatus(togglebtn) {
+    for (let toggle of document.getElementsByClassName("site-toggle")) {
+      if (toggle == togglebtn)
+        toggle.classList.remove("is-light");
+      else
+        toggle.classList.add("is-light");
+    }
+  }
+
+  function filterByCategory(category, togglebtn) {
+    //if removing the selection restore original state and leave function:
+    if (!togglebtn.classList.contains("is-light")) {
+      removeAllCatelgoryFilters();
+      return;
+    }
+
+    //change posts visibility
+    togglePostVisibilityByCategory(category);
+
+    //change toggle statuses
+    toggleCategoryFilterButtonStatus(togglebtn);
+  }
+</script>
+</div>
+
+        </main>
+        <footer class="footer">
+    <div class="content has-text-centered">
+        <p>
+            <strong><a href="https://brunoflavio.com">brunoflavio.com</a></strong> by Bruno Flávio.
+        </p>
+        <p>
+            This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
+            Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.
+        </p>
+        <picture><a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
+            <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a></picture>
+    </div>
+</footer>
+
+<!-- JS -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-66020503-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-66020503-1');
+</script>
+
+<script src="/assets/js/main.js"></script>
+    </body>
+</html>
